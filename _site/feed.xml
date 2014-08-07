@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Things that make my head hurt</title>
+    <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</description>
+    <link>http://nicholasjackson.github.io/</link>
+    <atom:link href="http://nicholasjackson.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Thu, 07 Aug 2014 14:14:56 +0100</pubDate>
+    <lastBuildDate>Thu, 07 Aug 2014 14:14:56 +0100</lastBuildDate>
+    <generator>Jekyll v2.2.0</generator>
+    
+      <item>
+        <title>Python Packages and Azure WebJobs</title>
+        <description>&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;I had a simple to task to solve of merging two json files so being constantly curious I decided I would hamper any chance of performing this simple task by choosing to review two new technologies, &lt;em&gt;Python&lt;/em&gt; and &lt;em&gt;Azure WebJobs&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;In this post I’m not going to discuss the finer details of &lt;em&gt;Python&lt;/em&gt; but I hope to pass as quick tip regarding using &lt;em&gt;Python&lt;/em&gt; packages with &lt;em&gt;Azure WebJobs&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;using-python-packages-with-azure-webjobs&quot;&gt;Using Python Packages with Azure WebJobs&lt;/h3&gt;
+&lt;p&gt;As a &lt;em&gt;Python&lt;/em&gt; programmer you will most likely be familiar with &lt;em&gt;pip&lt;/em&gt; as a noob my lack of familiarity kept me from my bed until 1am.  As it turns out all pip does (most likely a vast understatement) is to download the python package and store it in a location referenced by your &lt;em&gt;PYTHONPATH&lt;/em&gt;.  Since most Python packages are only collections of organised .py files these could be located anywhere as long as your &lt;em&gt;PYTHONPATH&lt;/em&gt; has reference to them.&lt;/p&gt;
+
+&lt;p&gt;This turned out to be the key in working out how to use &lt;em&gt;Python&lt;/em&gt; packages with &lt;em&gt;Azure WebJobs&lt;/em&gt;, you can’t use pip so the package must be uploaded as part of the WebJob package.&lt;/p&gt;
+
+&lt;h4 id=&quot;step-1&quot;&gt;Step 1.&lt;/h4&gt;
+&lt;p&gt;If you are using OSX and the default Python 2.7 install your packages installed with pip will be in&lt;br /&gt;
+&lt;code&gt;/usr/local/lib/python2.7/site-packages&lt;/code&gt;, create a folder called &lt;code&gt;site-packages&lt;/code&gt; in the root of your python job and copy any packages you need for your job into it.&lt;/p&gt;
+
+&lt;h4 id=&quot;step-2&quot;&gt;Step 2&lt;/h4&gt;
+&lt;p&gt;Next you need to modify your run.py or any other file which requires access to the package files.  At the top of the file add….  &lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sys&lt;/span&gt;  
+&lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;site-packages&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;step-3&quot;&gt;Step 3&lt;/h4&gt;
+&lt;p&gt;Zip all this up and upload as a WebJob or alternatively if you have previously created a job upload the files over FTP.&lt;/p&gt;
+
+&lt;h4 id=&quot;step-4&quot;&gt;Step 4&lt;/h4&gt;
+&lt;p&gt;Sit back watch it all explode in a ball of fire, call me all maner of names for mixing a step, revert to Stack Overflow.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 07 Aug 2014 13:12:32 +0100</pubDate>
+        <link>http://nicholasjackson.github.io/azure/python/2014/08/07/python-packages-and-azure-webjobs/</link>
+        <guid isPermaLink="true">http://nicholasjackson.github.io/azure/python/2014/08/07/python-packages-and-azure-webjobs/</guid>
+        
+        
+        <category>azure</category>
+        
+        <category>python</category>
+        
+      </item>
+    
+  </channel>
+</rss>
