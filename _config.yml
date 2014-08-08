@@ -2,7 +2,7 @@
 
 title:            Things that make my head hurt
 locale:           en_US
-url:              http://localhost:4000
+url:              http://nicholasjackson.github.io
 
 
 # Jekyll configuration
@@ -28,21 +28,22 @@ kramdown:
 owner:
   name: Nic Jackson
   avatar: bio-photo.jpg
-  bio: "Describe your self."
+  bio: "Geek, Ultrarunner and part time software engineering manager."
   email:
   disqus-shortname:
   twitter:
   facebook:
   google:
-    plus:
-    analytics:
+    plus: NicJackson
+    analytics: UA-53659420-1
     verify:
     ad-client:
     ad-slot:
   bing-verify:
-  github:
+  google_plus: NicJackson
+  github: nicholasjackson
   stackoverflow:
-  linkedin:
+  linkedin: jacksonnic
   instagram:
   lastfm:
   tumblr:
