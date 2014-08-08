@@ -3,11 +3,93 @@
   <channel>
     <title>Things that make my head hurt</title>
     <description></description>
-    <link>http://nicholasjackson.github.io/</link>
-    <atom:link href="http://nicholasjackson.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 08 Aug 2014 16:27:23 +0100</pubDate>
-    <lastBuildDate>Fri, 08 Aug 2014 16:27:23 +0100</lastBuildDate>
+    <link>/</link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Fri, 08 Aug 2014 17:40:20 +0100</pubDate>
+    <lastBuildDate>Fri, 08 Aug 2014 17:40:20 +0100</lastBuildDate>
     <generator>Jekyll v2.2.0</generator>
+    
+      <item>
+        <title>Swift Unit Tests and Access Modifiers</title>
+        <description>&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;XCode 6 beta 4 introduced access modifiers to &lt;strong&gt;Swift&lt;/strong&gt;, OK access modifiers were in the previous versions but they technically did nothing more than a compiler warning.  For those not familiar they are…&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Public&lt;/strong&gt; access enables entities to be used within any source file from their defining module, and also in a source file from another module that imports the defining module. You typically use public access when specifying the public interface to a framework.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Internal&lt;/strong&gt; access enables entities to be used within any source file from their defining module, but not in any source file outside of that module. You typically use internal access when defining an app’s or a framework’s internal structure.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Private&lt;/strong&gt; access restricts the use of an entity to its own defining source file. Use private access to hide the implementation details of a specific piece of functionality.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;access-modifiers-and-tdd&quot;&gt;Access Modifiers and TDD&lt;/h3&gt;
+
+&lt;p&gt;So we are writing our code following the TDD methodology, we have a class and that class has a method, the function of which we need to write tests for.  When writing object oriented code you should try to only expose the methods that define your usable interface and this should be kept as small as possible.&lt;/p&gt;
+
+&lt;p&gt;We do this because at some point you are going to want to refactor your class and the smaller the impact it has on the rest of your code the faster it will be to perform this operation.  What’s that I hear you say, its my code and I know what I’m doing so I’m not going to have that problem.  Take it from me you will, even you will forget the function of some classes and methods as your code grows in complexity and this is where the rot sets in.  &lt;/p&gt;
+
+&lt;p&gt;Do your self a favour and follow the principles:&lt;/p&gt;
+
+&lt;h4 id=&quot;as-public-as-necessary-as-private-as-possible&quot;&gt;“as public as necessary as private as possible”&lt;/h4&gt;
+
+&lt;p&gt;Here some simple swift code and a test for it…  &lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;MyClass&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;myFunc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;UIKit&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;XCTest&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Test&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TestTests&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;XCTestCase&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;setUp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kr&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setUp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// Put setup code here. This method is called before the invocation of each test method in the class.&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tearDown&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// Put teardown code here. This method is called after the invocation of each test method in the class.&lt;/span&gt;
+        &lt;span class=&quot;kr&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;tearDown&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;testExample&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// This is an example of a functional test case.&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;clazz&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;MyClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;XCTAssert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;clazz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;myFunc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If you were writing this in a XCode the first class would be defined in MyClass.swift and the test defined in TestTests.swift and from &lt;em&gt;beta 4&lt;/em&gt; the default protection level for classes and methods is &lt;em&gt;Internal&lt;/em&gt;, this used to be &lt;em&gt;Public&lt;/em&gt; in beta 3 and below.&lt;/p&gt;
+
+&lt;p&gt;The default for XCode is that you add your tests to be compile to the test target and your classes under test to the application target, the main application is referenced as a Target Dependency in the XCode build phases panel (see below).
+&lt;br /&gt;&lt;br /&gt;
+&lt;img src=&quot;/images/post_images/xcode-tdd-swift.png&quot; alt=&quot;XCode Build Phases&quot; /&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;If you run the tests in XCode with this default setup under beta 4+ the code will not even compile as you will be getting unresolved identifier errors.  This is due to the fact that the test target is different to the application target and thus can not access Internal classes and methods.&lt;/p&gt;
+
+&lt;h4 id=&quot;what-are-you-going-to-to-do-about-that-then&quot;&gt;What are you going to to do about that then?&lt;/h4&gt;
+&lt;p&gt;Make all the methods public, Objective C had no issue with this right?&lt;br /&gt;
+I’m not even going to have this argument again but personally I like access modifiers and I think using them in conjunction with a TDD based approach allows you to naturally create good structured code.&lt;/p&gt;
+
+&lt;h4 id=&quot;if-its-difficult-to-test-its-probably-not-the-best-code&quot;&gt;“If its difficult to test, its probably not the best code”&lt;/h4&gt;
+
+&lt;p&gt;OK, just tell me how to test bloody internal modifiers.  It’s actually quite simple, just add the class under test to the test target’s compile sources list.  It’s possible this requirement will change in a future XCode release but for now its a fairly painless additional step.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 08 Aug 2014 17:00:00 +0100</pubDate>
+        <link>/swift/ios/swift-unit-tests-and-access-modifiers/</link>
+        <guid isPermaLink="true">/swift/ios/swift-unit-tests-and-access-modifiers/</guid>
+        
+        
+        <category>swift</category>
+        
+        <category>ios</category>
+        
+      </item>
     
       <item>
         <title>Python Packages and Azure WebJobs</title>
@@ -38,8 +120,8 @@
 &lt;p&gt;Sit back watch it all explode in a ball of fire, call me all maner of names for mixing a step, revert to Stack Overflow.&lt;/p&gt;
 </description>
         <pubDate>Thu, 07 Aug 2014 13:12:32 +0100</pubDate>
-        <link>http://nicholasjackson.github.io/azure/python/python-packages-and-azure-webjobs/</link>
-        <guid isPermaLink="true">http://nicholasjackson.github.io/azure/python/python-packages-and-azure-webjobs/</guid>
+        <link>/azure/python/python-packages-and-azure-webjobs/</link>
+        <guid isPermaLink="true">/azure/python/python-packages-and-azure-webjobs/</guid>
         
         
         <category>azure</category>

@@ -1,0 +1,292 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Swift Unit Tests and Access Modifiers &#8211; Things that make my head hurt</title>
+<meta name="description" content="Introduction
+XCode 6 beta 4 introduced access modifiers to Swift, OK access modifiers were in the previous versions but they technically did nothing more than a compiler warning.  For those not familiar they are&#8230;
+
+">
+<meta name="keywords" content="">
+
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="Swift Unit Tests and Access Modifiers">
+<meta name="twitter:description" content="Introduction
+XCode 6 beta 4 introduced access modifiers to Swift, OK access modifiers were in the previous versions but they technically did nothing more than a compiler warning.  For those not familiar they are&#8230;
+
+">
+
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="/images/">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift Unit Tests and Access Modifiers">
+<meta property="og:description" content="Introduction
+XCode 6 beta 4 introduced access modifiers to Swift, OK access modifiers were in the previous versions but they technically did nothing more than a compiler warning.  For those not familiar they are&#8230;
+
+">
+<meta property="og:url" content="/swift/ios/swift-unit-tests-and-access-modifiers/">
+<meta property="og:site_name" content="Things that make my head hurt">
+
+
+
+
+
+<link rel="canonical" href="/swift/ios/swift-unit-tests-and-access-modifiers/">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Things that make my head hurt Feed">
+<link rel="author" href="http://plus.google.com/+NicJackson?rel=author">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+	<script src="/assets/js/vendor/html5shiv.min.js"></script>
+	<script src="/assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body class="post">
+
+<!--[if lt IE 9]><div class="browser-upgrade alert alert-info">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div><![endif]-->
+
+<div class="navigation-wrapper">
+	<div class="site-name">
+		<a href="">Things that make my head hurt</a>
+	</div><!-- /.site-name -->
+	<div class="top-navigation">
+		<nav role="navigation" id="site-nav" class="nav">
+		    <ul>
+		        
+					    
+					        
+					    
+					    <li><a href="/about/" >About</a></li>
+					  
+		    </ul>
+		</nav>
+	</div><!-- /.top-navigation -->
+</div><!-- /.navigation-wrapper -->
+
+
+
+<div id="main" role="main">
+  <div class="article-author-side">
+    
+
+
+
+	<img src="/images/bio-photo.jpg" class="bio-photo" alt="Nic Jackson bio photo"></a>
+
+<h3>Nic Jackson</h3>
+<p>Geek, Ultrarunner and part time software engineering manager.</p>
+
+
+
+<a href="http://plus.google.com/+NicJackson" class="author-social" target="_blank"><i class="fa fa-google-plus-square"></i> Google+</a>
+<a href="http://linkedin.com/in/jacksonnic" class="author-social" target="_blank"><i class="fa fa-linkedin-square"></i> LinkedIn</a>
+
+
+<a href="http://github.com/nicholasjackson" class="author-social" target="_blank"><i class="fa fa-github"></i> Github</a>
+
+
+
+
+
+
+  </div>
+  <article>
+    <div class="headline-wrap">
+      
+        <h1><a href="/swift/ios/swift-unit-tests-and-access-modifiers/" rel="bookmark" title="Swift Unit Tests and Access Modifiers">Swift Unit Tests and Access Modifiers</a></h1>
+      
+    </div><!--/ .headline-wrap -->
+    <div class="article-wrap">
+      <h3 id="introduction">Introduction</h3>
+<p>XCode 6 beta 4 introduced access modifiers to <strong>Swift</strong>, OK access modifiers were in the previous versions but they technically did nothing more than a compiler warning.  For those not familiar they are…</p>
+
+<ul>
+  <li><strong>Public</strong> access enables entities to be used within any source file from their defining module, and also in a source file from another module that imports the defining module. You typically use public access when specifying the public interface to a framework.</li>
+  <li><strong>Internal</strong> access enables entities to be used within any source file from their defining module, but not in any source file outside of that module. You typically use internal access when defining an app’s or a framework’s internal structure.</li>
+  <li><strong>Private</strong> access restricts the use of an entity to its own defining source file. Use private access to hide the implementation details of a specific piece of functionality.</li>
+</ul>
+
+<h3 id="access-modifiers-and-tdd">Access Modifiers and TDD</h3>
+
+<p>So we are writing our code following the TDD methodology, we have a class and that class has a method, the function of which we need to write tests for.  When writing object oriented code you should try to only expose the methods that define your usable interface and this should be kept as small as possible.</p>
+
+<p>We do this because at some point you are going to want to refactor your class and the smaller the impact it has on the rest of your code the faster it will be to perform this operation.  What’s that I hear you say, its my code and I know what I’m doing so I’m not going to have that problem.  Take it from me you will, even you will forget the function of some classes and methods as your code grows in complexity and this is where the rot sets in.  </p>
+
+<p>Do your self a favour and follow the principles:</p>
+
+<h4 id="as-public-as-necessary-as-private-as-possible">“as public as necessary as private as possible”</h4>
+
+<p>Here some simple swift code and a test for it…  </p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">class</span> <span class="nx">MyClass</span> <span class="p">{</span>
+
+    <span class="nx">func</span> <span class="nx">myFunc</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nx">Int</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">500</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="kr">import</span> <span class="nx">UIKit</span>
+<span class="kr">import</span> <span class="nx">XCTest</span>
+<span class="kr">import</span> <span class="nx">Test</span>
+
+<span class="kr">class</span> <span class="nx">TestTests</span><span class="o">:</span> <span class="nx">XCTestCase</span> <span class="p">{</span>
+
+    <span class="nx">override</span> <span class="nx">func</span> <span class="nx">setUp</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kr">super</span><span class="p">.</span><span class="nx">setUp</span><span class="p">()</span>
+        <span class="c1">// Put setup code here. This method is called before the invocation of each test method in the class.</span>
+    <span class="p">}</span>
+
+    <span class="nx">override</span> <span class="nx">func</span> <span class="nx">tearDown</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Put teardown code here. This method is called after the invocation of each test method in the class.</span>
+        <span class="kr">super</span><span class="p">.</span><span class="nx">tearDown</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="nx">func</span> <span class="nx">testExample</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// This is an example of a functional test case.</span>
+        <span class="kd">let</span> <span class="nx">clazz</span> <span class="o">=</span> <span class="nx">MyClass</span><span class="p">()</span>
+        <span class="nx">XCTAssert</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="nx">clazz</span><span class="p">.</span><span class="nx">myFunc</span><span class="p">())</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+
+<p>If you were writing this in a XCode the first class would be defined in MyClass.swift and the test defined in TestTests.swift and from <em>beta 4</em> the default protection level for classes and methods is <em>Internal</em>, this used to be <em>Public</em> in beta 3 and below.</p>
+
+<p>The default for XCode is that you add your tests to be compile to the test target and your classes under test to the application target, the main application is referenced as a Target Dependency in the XCode build phases panel (see below).
+<br /><br />
+<img src="/images/post_images/xcode-tdd-swift.png" alt="XCode Build Phases" />
+<br /><br /></p>
+
+<p>If you run the tests in XCode with this default setup under beta 4+ the code will not even compile as you will be getting unresolved identifier errors.  This is due to the fact that the test target is different to the application target and thus can not access Internal classes and methods.</p>
+
+<h4 id="what-are-you-going-to-to-do-about-that-then">What are you going to to do about that then?</h4>
+<p>Make all the methods public, Objective C had no issue with this right?<br />
+I’m not even going to have this argument again but personally I like access modifiers and I think using them in conjunction with a TDD based approach allows you to naturally create good structured code.</p>
+
+<h4 id="if-its-difficult-to-test-its-probably-not-the-best-code">“If its difficult to test, its probably not the best code”</h4>
+
+<p>OK, just tell me how to test bloody internal modifiers.  It’s actually quite simple, just add the class under test to the test target’s compile sources list.  It’s possible this requirement will change in a future XCode release but for now its a fairly painless additional step.</p>
+
+      <hr />
+      <footer role="contentinfo">
+        <div class="article-author-bottom">
+          
+
+
+
+	<img src="/images/bio-photo.jpg" class="bio-photo" alt="Nic Jackson bio photo"></a>
+
+<h3>Nic Jackson</h3>
+<p>Geek, Ultrarunner and part time software engineering manager.</p>
+
+
+
+<a href="http://plus.google.com/+NicJackson" class="author-social" target="_blank"><i class="fa fa-google-plus-square"></i> Google+</a>
+<a href="http://linkedin.com/in/jacksonnic" class="author-social" target="_blank"><i class="fa fa-linkedin-square"></i> LinkedIn</a>
+
+
+<a href="http://github.com/nicholasjackson" class="author-social" target="_blank"><i class="fa fa-github"></i> Github</a>
+
+
+
+
+
+
+        </div>
+        <p class="byline"><strong>Swift Unit Tests and Access Modifiers</strong> was published on <time datetime="2014-08-08T17:00:00+01:00">August 08, 2014</time>.</p>
+      </footer>
+    </div><!-- /.article-wrap -->
+  
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrap">
+  <div class="related-articles">
+  <h4>You might also enjoy <small class="pull-right">(<a href="/posts/">View all posts</a>)</small></h4>
+    <ul>
+    
+      <li><a href="/azure/python/python-packages-and-azure-webjobs/" title="Python Packages and Azure WebJobs">Python Packages and Azure WebJobs</a></li>
+    
+    </ul>
+    <hr />
+  </div><!-- /.related-articles -->
+  <footer>
+    <div class="google-ads">
+  <!-- 320 x 50 ad -->
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:320px;height:50px"
+       data-ad-client=""
+       data-ad-slot=""></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div><!-- /.google-ads -->
+
+<span>&copy; 2014 Nic Jackson. Powered by <a href="http://jekyllrb.com">Jekyll</a> using the <a href="http://mademistakes.com/minimal-mistakes/">Minimal Mistakes</a> theme.</span>
+
+  </footer>
+</div><!-- /.footer-wrap -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="/assets/js/scripts.min.js"></script>
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  var _gaq = _gaq || [];
+  var pluginUrl = 
+ '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-53659420-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+	        
+
+</body>
+</html>
