@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <title>Swift Unit Tests and Access Modifiers &#8211; Things that make my head hurt</title>
 <meta name="description" content="Introduction
-XCode 6 beta 4 introduced access modifiers to Swift, OK access modifiers were in the previous versions but they technically did nothing more than a compiler warning.  For those not familiar they are&#8230;
+XCode 6 beta 4 introduced access modifiers to Swift, OK access modifiers were in the previous versions but they technically did nothing more than produce a compiler warning.  For those not familiar they are…
 
 ">
 <meta name="keywords" content="">
@@ -17,32 +17,32 @@ XCode 6 beta 4 introduced access modifiers to Swift, OK access modifiers were in
 <!-- Twitter Cards -->
 <meta name="twitter:title" content="Swift Unit Tests and Access Modifiers">
 <meta name="twitter:description" content="Introduction
-XCode 6 beta 4 introduced access modifiers to Swift, OK access modifiers were in the previous versions but they technically did nothing more than a compiler warning.  For those not familiar they are&#8230;
+XCode 6 beta 4 introduced access modifiers to Swift, OK access modifiers were in the previous versions but they technically did nothing more than produce a compiler warning.  For those not familiar they are…
 
 ">
 
 
 
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="/images/">
+<meta name="twitter:image" content="http://0.0.0.0:4000/images/">
 
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift Unit Tests and Access Modifiers">
 <meta property="og:description" content="Introduction
-XCode 6 beta 4 introduced access modifiers to Swift, OK access modifiers were in the previous versions but they technically did nothing more than a compiler warning.  For those not familiar they are&#8230;
+XCode 6 beta 4 introduced access modifiers to Swift, OK access modifiers were in the previous versions but they technically did nothing more than produce a compiler warning.  For those not familiar they are…
 
 ">
-<meta property="og:url" content="/swift/ios/swift-unit-tests-and-access-modifiers/">
+<meta property="og:url" content="http://0.0.0.0:4000/swift/ios/swift-unit-tests-and-access-modifiers/">
 <meta property="og:site_name" content="Things that make my head hurt">
 
 
 
 
 
-<link rel="canonical" href="/swift/ios/swift-unit-tests-and-access-modifiers/">
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Things that make my head hurt Feed">
+<link rel="canonical" href="http://0.0.0.0:4000/swift/ios/swift-unit-tests-and-access-modifiers/">
+<link href="http://0.0.0.0:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Things that make my head hurt Feed">
 <link rel="author" href="http://plus.google.com/+NicJackson?rel=author">
 
 <!-- http://t.co/dKP3o1e -->
@@ -51,32 +51,32 @@ XCode 6 beta 4 introduced access modifiers to Swift, OK access modifiers were in
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="http://0.0.0.0:4000/assets/css/main.css">
 
 <meta http-equiv="cleartype" content="on">
 
 <!-- HTML5 Shiv and Media Query Support -->
 <!--[if lt IE 9]>
-	<script src="/assets/js/vendor/html5shiv.min.js"></script>
-	<script src="/assets/js/vendor/respond.min.js"></script>
+	<script src="http://0.0.0.0:4000/assets/js/vendor/html5shiv.min.js"></script>
+	<script src="http://0.0.0.0:4000/assets/js/vendor/respond.min.js"></script>
 <![endif]-->
 
 <!-- Modernizr -->
-<script src="/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+<script src="http://0.0.0.0:4000/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
 
 <!-- Icons -->
 <!-- 16x16 -->
-<link rel="shortcut icon" href="/favicon.ico">
+<link rel="shortcut icon" href="http://0.0.0.0:4000/favicon.ico">
 <!-- 32x32 -->
-<link rel="shortcut icon" href="/favicon.png">
+<link rel="shortcut icon" href="http://0.0.0.0:4000/favicon.png">
 <!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
-<link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="http://0.0.0.0:4000/images/apple-touch-icon-precomposed.png">
 <!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://0.0.0.0:4000/images/apple-touch-icon-72x72-precomposed.png">
 <!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://0.0.0.0:4000/images/apple-touch-icon-114x114-precomposed.png">
 <!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/apple-touch-icon-144x144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://0.0.0.0:4000/images/apple-touch-icon-144x144-precomposed.png">
 
 </head>
 
@@ -86,7 +86,7 @@ XCode 6 beta 4 introduced access modifiers to Swift, OK access modifiers were in
 
 <div class="navigation-wrapper">
 	<div class="site-name">
-		<a href="">Things that make my head hurt</a>
+		<a href="http://0.0.0.0:4000">Things that make my head hurt</a>
 	</div><!-- /.site-name -->
 	<div class="top-navigation">
 		<nav role="navigation" id="site-nav" class="nav">
@@ -95,7 +95,7 @@ XCode 6 beta 4 introduced access modifiers to Swift, OK access modifiers were in
 					    
 					        
 					    
-					    <li><a href="/about/" >About</a></li>
+					    <li><a href="http://0.0.0.0:4000/about/" >About</a></li>
 					  
 		    </ul>
 		</nav>
@@ -110,10 +110,10 @@ XCode 6 beta 4 introduced access modifiers to Swift, OK access modifiers were in
 
 
 
-	<img src="/images/bio-photo.jpg" class="bio-photo" alt="Nic Jackson bio photo"></a>
+	<img src="http://0.0.0.0:4000/images/bio-photo.jpg" class="bio-photo" alt="Nic Jackson bio photo"></a>
 
 <h3>Nic Jackson</h3>
-<p>Geek, Ultrarunner and part time software engineering manager.</p>
+<p>Geek, Ultrarunner and part time software engineering manager for Marks and Spencer.</p>
 
 
 
@@ -132,12 +132,12 @@ XCode 6 beta 4 introduced access modifiers to Swift, OK access modifiers were in
   <article>
     <div class="headline-wrap">
       
-        <h1><a href="/swift/ios/swift-unit-tests-and-access-modifiers/" rel="bookmark" title="Swift Unit Tests and Access Modifiers">Swift Unit Tests and Access Modifiers</a></h1>
+        <h1><a href="http://0.0.0.0:4000/swift/ios/swift-unit-tests-and-access-modifiers/" rel="bookmark" title="Swift Unit Tests and Access Modifiers">Swift Unit Tests and Access Modifiers</a></h1>
       
     </div><!--/ .headline-wrap -->
     <div class="article-wrap">
       <h3 id="introduction">Introduction</h3>
-<p>XCode 6 beta 4 introduced access modifiers to <strong>Swift</strong>, OK access modifiers were in the previous versions but they technically did nothing more than a compiler warning.  For those not familiar they are…</p>
+<p>XCode 6 beta 4 introduced access modifiers to <strong>Swift</strong>, OK access modifiers were in the previous versions but they technically did nothing more than produce a compiler warning.  For those not familiar they are…</p>
 
 <ul>
   <li><strong>Public</strong> access enables entities to be used within any source file from their defining module, and also in a source file from another module that imports the defining module. You typically use public access when specifying the public interface to a framework.</li>
@@ -149,13 +149,13 @@ XCode 6 beta 4 introduced access modifiers to Swift, OK access modifiers were in
 
 <p>So we are writing our code following the TDD methodology, we have a class and that class has a method, the function of which we need to write tests for.  When writing object oriented code you should try to only expose the methods that define your usable interface and this should be kept as small as possible.</p>
 
-<p>We do this because at some point you are going to want to refactor your class and the smaller the impact it has on the rest of your code the faster it will be to perform this operation.  What’s that I hear you say, its my code and I know what I’m doing so I’m not going to have that problem.  Take it from me you will, even you will forget the function of some classes and methods as your code grows in complexity and this is where the rot sets in.  </p>
+<p>We do this because at some point you are going to want to refactor your class and the smaller the impact it has on the rest of your code the simpler it will be to refactor.  What’s that I hear you say, it’s my code and I know what I’m doing so I’m not going to have that problem.  Take it from me you will, even you will forget the function of some classes and methods as your code grows in complexity and this is where the rot sets in.  </p>
 
-<p>Do your self a favour and follow the principles:</p>
+<p>Do your self a favour and follow the below principle:</p>
 
 <h4 id="as-public-as-necessary-as-private-as-possible">“as public as necessary as private as possible”</h4>
 
-<p>Here some simple swift code and a test for it…  </p>
+<p>Here some simple swift code and a simple test for it…  </p>
 
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kr">class</span> <span class="nx">MyClass</span> <span class="p">{</span>
 
@@ -188,21 +188,22 @@ XCode 6 beta 4 introduced access modifiers to Swift, OK access modifiers were in
     <span class="p">}</span>
 <span class="p">}</span></code></pre></div>
 
-<p>If you were writing this in a XCode the first class would be defined in MyClass.swift and the test defined in TestTests.swift and from <em>beta 4</em> the default protection level for classes and methods is <em>Internal</em>, this used to be <em>Public</em> in beta 3 and below.</p>
+<p>In XCode the first class would be defined in MyClass.swift and the test defined in TestTests.swift and as of <em>beta 4</em> the default protection level for classes and methods is <em>Internal</em>, this used to be <em>Public</em> in beta 3 and below.</p>
 
-<p>The default for XCode is that you add your tests to be compile to the test target and your classes under test to the application target, the main application is referenced as a Target Dependency in the XCode build phases panel (see below).
+<p>The default for XCode is that you add your tests classes to the test target and your application classes under test to the application target, the main application then referenced as a target dependency in the XCode build phases panel (see below).
 <br /><br />
-<img src="/images/post_images/xcode-tdd-swift.png" alt="XCode Build Phases" />
+<img src="http://0.0.0.0:4000/images/post_images/xcode-tdd-swift.png" alt="XCode Build Phases" />
 <br /><br /></p>
 
 <p>If you run the tests in XCode with this default setup under beta 4+ the code will not even compile as you will be getting unresolved identifier errors.  This is due to the fact that the test target is different to the application target and thus can not access Internal classes and methods.</p>
 
 <h4 id="what-are-you-going-to-to-do-about-that-then">What are you going to to do about that then?</h4>
 <p>Make all the methods public, Objective C had no issue with this right?<br />
-I’m not even going to have this argument again but personally I like access modifiers and I think using them in conjunction with a TDD based approach allows you to naturally create good structured code.</p>
+I’m not even going to have this argument, we have already ascertained that access modifiers are good and as an engineer you want to write great code not just working code, don’t you?  Personally I like access modifiers and I think using them in conjunction with a TDD based approach allows you to naturally create good structured code, so drop this idea and find another solution.  I find that if you don’t follow <em>SOLID</em> principles when writing code it is really difficult to test therefore we can develop a simple rule here when coding….</p>
 
 <h4 id="if-its-difficult-to-test-its-probably-not-the-best-code">“If its difficult to test, its probably not the best code”</h4>
 
+<h3 id="the-solution">The Solution</h3>
 <p>OK, just tell me how to test bloody internal modifiers.  It’s actually quite simple, just add the class under test to the test target’s compile sources list.  It’s possible this requirement will change in a future XCode release but for now its a fairly painless additional step.</p>
 
       <hr />
@@ -212,10 +213,10 @@ I’m not even going to have this argument again but personally I like access mo
 
 
 
-	<img src="/images/bio-photo.jpg" class="bio-photo" alt="Nic Jackson bio photo"></a>
+	<img src="http://0.0.0.0:4000/images/bio-photo.jpg" class="bio-photo" alt="Nic Jackson bio photo"></a>
 
 <h3>Nic Jackson</h3>
-<p>Geek, Ultrarunner and part time software engineering manager.</p>
+<p>Geek, Ultrarunner and part time software engineering manager for Marks and Spencer.</p>
 
 
 
@@ -235,15 +236,17 @@ I’m not even going to have this argument again but personally I like access mo
       </footer>
     </div><!-- /.article-wrap -->
   
+    <section id="disqus_thread"></section><!-- /#disqus_thread -->
+  
   </article>
 </div><!-- /#main -->
 
 <div class="footer-wrap">
   <div class="related-articles">
-  <h4>You might also enjoy <small class="pull-right">(<a href="/posts/">View all posts</a>)</small></h4>
+  <h4>You might also enjoy <small class="pull-right">(<a href="http://0.0.0.0:4000/posts/">View all posts</a>)</small></h4>
     <ul>
     
-      <li><a href="/azure/python/python-packages-and-azure-webjobs/" title="Python Packages and Azure WebJobs">Python Packages and Azure WebJobs</a></li>
+      <li><a href="http://0.0.0.0:4000/azure/python/python-packages-and-azure-webjobs/" title="Python Packages and Azure WebJobs">Python Packages and Azure WebJobs</a></li>
     
     </ul>
     <hr />
@@ -267,8 +270,8 @@ I’m not even going to have this argument again but personally I like access mo
 </div><!-- /.footer-wrap -->
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
-<script src="/assets/js/scripts.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://0.0.0.0:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://0.0.0.0:4000/assets/js/scripts.min.js"></script>
 
 <!-- Asynchronous Google Analytics snippet -->
 <script>
@@ -285,6 +288,30 @@ I’m not even going to have this argument again but personally I like access mo
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>
+
+
+  
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'thingsthatmakemyheadhurt'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 	        
 

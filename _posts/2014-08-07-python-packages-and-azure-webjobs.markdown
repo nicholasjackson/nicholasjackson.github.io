@@ -3,6 +3,7 @@ layout: post
 title:  "Python Packages and Azure WebJobs"
 date:   2014-08-07 12:12:32
 categories: azure python
+comments: true
 ---
 ### Introduction
 I had a simple to task to solve of merging two json files so being constantly curious I decided I would hamper any chance of performing this simple task by choosing to review two new technologies, *Python* and *Azure WebJobs*.

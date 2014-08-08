@@ -2,6 +2,7 @@
 
 title:            Things that make my head hurt
 locale:           en_US
+url: http://0.0.0.0:4000
 
 # Jekyll configuration
 
@@ -26,9 +27,9 @@ kramdown:
 owner:
   name: Nic Jackson
   avatar: bio-photo.jpg
-  bio: "Geek, Ultrarunner and part time software engineering manager."
+  bio: "Geek, Ultrarunner and part time software engineering manager for Marks and Spencer."
   email:
-  disqus-shortname:
+  disqus-shortname: thingsthatmakemyheadhurt
   twitter:
   facebook:
   google:
