@@ -3,11 +3,54 @@
   <channel>
     <title>Things that make my head hurt</title>
     <description></description>
-    <link>http://0.0.0.0:4000/</link>
-    <atom:link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 08 Aug 2014 21:58:52 +0100</pubDate>
-    <lastBuildDate>Fri, 08 Aug 2014 21:58:52 +0100</lastBuildDate>
+    <link>/</link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Sat, 16 Aug 2014 10:04:18 +0100</pubDate>
+    <lastBuildDate>Sat, 16 Aug 2014 10:04:18 +0100</lastBuildDate>
     <generator>Jekyll v2.2.0</generator>
+    
+      <item>
+        <title>Why EE&#39;s new customer service policy could not be more wrong</title>
+        <description>&lt;p&gt;EE have just announced that they will be introducing a &lt;a href=&quot;http://www.engadget.com/2014/08/15/ee-lets-queue-jumpers-pay-50p-for-faster-customer-service/&quot;&gt;new service which will allow you to pay 50p extra to jump to the front of the queue&lt;/a&gt; when you dial their customer support line.&lt;/p&gt;
+
+&lt;h3 id=&quot;what-is-the-justification-for-this&quot;&gt;What is the justification for this?&lt;/h3&gt;
+&lt;p&gt;Before I dive into why this is quite possibly one of the worst ideas that I have heard recently lets look at why EE are doing this.  Their justification is that the additional charge will allow them to open more customer service lines which in turn will improve customer services.&lt;/p&gt;
+
+&lt;h3 id=&quot;that-makes-sense-i-generaly-call-customer-services-because-i-enjoy-it-so-much&quot;&gt;That makes sense I generaly call customer services because I enjoy it so much&lt;/h3&gt;
+&lt;p&gt;You don’t though do you?  We generally call customer services for the following reasons:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;To report a problem with a service we are already paying for&lt;/li&gt;
+  &lt;li&gt;To change a service because we either no longer require it or are disastisfied with it&lt;/li&gt;
+  &lt;li&gt;To buy more of the product by adding additional features&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;value-vs-failure-driven-demand&quot;&gt;Value vs Failure driven demand&lt;/h3&gt;
+&lt;p&gt;It seems that EE are medicating a problem rather than treating the root cause, this is know in the agile world as &lt;em&gt;Failure Demand&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;failure-demand&quot;&gt;Failure Demand&lt;/h4&gt;
+&lt;p&gt;“Failure demand is the demand on the resources of an organisation caused by its own failures.  Support calls, are almost allways failure demand”&lt;/p&gt;
+
+&lt;h4 id=&quot;value-demand&quot;&gt;Value Demand&lt;/h4&gt;
+&lt;p&gt;“The primary demand on your organisation should be value demand.  This demand can be in the form of requests for work that will add value from a customer’s perspective”&lt;/p&gt;
+
+&lt;h5 id=&quot;mary-poppendieck-tom-poppendieck---leading-lean-software-development-results-are-not-the-point-2009&quot;&gt;Mary Poppendieck; Tom Poppendieck - Leading Lean Software Development: Results Are Not The Point 2009&lt;/h5&gt;
+
+&lt;p&gt;If more companies examine themselves in this way and remove the need for their customers to complain and focus on &lt;em&gt;Value Demand&lt;/em&gt; they will most certainly have happier customers and most likely show increased profit.  &lt;/p&gt;
+
+&lt;h3 id=&quot;makes-sense-does-it-not&quot;&gt;Makes sense does it not?&lt;/h3&gt;
+&lt;p&gt;In the majority of cases it seems not, big business can learn a lot from startup culture, put the people responsible for creating the problems in front of the customer so that they can understand the impact of their mistakes and so they can understand how they can best fix them.  It seems some organisations would much rather take a reactionary approach, concentrating on the efficiency of customer service lines rather than dealing with the reason that customer service exits in the first place.  If you start with the goal of eradicating customer complaints by following a quality focused development model then the remainder of your calls will be value based which instead of being a cost will help generate profit.  &lt;/p&gt;
+</description>
+        <pubDate>Sat, 16 Aug 2014 11:00:00 +0100</pubDate>
+        <link>/agile/ee/why-ee-is-very-wrong/</link>
+        <guid isPermaLink="true">/agile/ee/why-ee-is-very-wrong/</guid>
+        
+        
+        <category>agile</category>
+        
+        <category>ee</category>
+        
+      </item>
     
       <item>
         <title>Swift Unit Tests and Access Modifiers</title>
@@ -67,7 +110,7 @@
 
 &lt;p&gt;The default for XCode is that you add your tests classes to the test target and your application classes under test to the application target, the main application then referenced as a target dependency in the XCode build phases panel (see below).
 &lt;br /&gt;&lt;br /&gt;
-&lt;img src=&quot;http://0.0.0.0:4000/images/post_images/xcode-tdd-swift.png&quot; alt=&quot;XCode Build Phases&quot; /&gt;
+&lt;img src=&quot;/images/post_images/xcode-tdd-swift.png&quot; alt=&quot;XCode Build Phases&quot; /&gt;
 &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;If you run the tests in XCode with this default setup under beta 4+ the code will not even compile as you will be getting unresolved identifier errors.  This is due to the fact that the test target is different to the application target and thus can not access Internal classes and methods.&lt;/p&gt;
@@ -82,8 +125,8 @@ I’m not even going to have this argument, we have already ascertained that acc
 &lt;p&gt;OK, just tell me how to test bloody internal modifiers.  It’s actually quite simple, just add the class under test to the test target’s compile sources list.  It’s possible this requirement will change in a future XCode release but for now its a fairly painless additional step.&lt;/p&gt;
 </description>
         <pubDate>Fri, 08 Aug 2014 17:00:00 +0100</pubDate>
-        <link>http://0.0.0.0:4000/swift/ios/swift-unit-tests-and-access-modifiers/</link>
-        <guid isPermaLink="true">http://0.0.0.0:4000/swift/ios/swift-unit-tests-and-access-modifiers/</guid>
+        <link>/swift/ios/swift-unit-tests-and-access-modifiers/</link>
+        <guid isPermaLink="true">/swift/ios/swift-unit-tests-and-access-modifiers/</guid>
         
         
         <category>swift</category>
@@ -121,8 +164,8 @@ I’m not even going to have this argument, we have already ascertained that acc
 &lt;p&gt;Sit back watch it all explode in a ball of fire, call me all maner of names for mixing a step, revert to Stack Overflow.&lt;/p&gt;
 </description>
         <pubDate>Thu, 07 Aug 2014 13:12:32 +0100</pubDate>
-        <link>http://0.0.0.0:4000/azure/python/python-packages-and-azure-webjobs/</link>
-        <guid isPermaLink="true">http://0.0.0.0:4000/azure/python/python-packages-and-azure-webjobs/</guid>
+        <link>/azure/python/python-packages-and-azure-webjobs/</link>
+        <guid isPermaLink="true">/azure/python/python-packages-and-azure-webjobs/</guid>
         
         
         <category>azure</category>

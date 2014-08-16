@@ -5,9 +5,8 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Python Packages and Azure WebJobs &#8211; Things that make my head hurt</title>
-<meta name="description" content="Introduction
-I had a simple to task to solve of merging two json files so being constantly curious I decided I would hamper any chance of performing this simple task by choosing to review two new technologies, Python and Azure WebJobs.
+<title>Why EE's new customer service policy could not be more wrong &#8211; Things that make my head hurt</title>
+<meta name="description" content="EE have just announced that they will be introducing a new service which will allow you to pay 50p extra to jump to the front of the queue when you dial their customer support line.
 
 ">
 <meta name="keywords" content="">
@@ -15,9 +14,8 @@ I had a simple to task to solve of merging two json files so being constantly cu
 
 
 <!-- Twitter Cards -->
-<meta name="twitter:title" content="Python Packages and Azure WebJobs">
-<meta name="twitter:description" content="Introduction
-I had a simple to task to solve of merging two json files so being constantly curious I decided I would hamper any chance of performing this simple task by choosing to review two new technologies, Python and Azure WebJobs.
+<meta name="twitter:title" content="Why EE's new customer service policy could not be more wrong">
+<meta name="twitter:description" content="EE have just announced that they will be introducing a new service which will allow you to pay 50p extra to jump to the front of the queue when you dial their customer support line.
 
 ">
 
@@ -29,19 +27,18 @@ I had a simple to task to solve of merging two json files so being constantly cu
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python Packages and Azure WebJobs">
-<meta property="og:description" content="Introduction
-I had a simple to task to solve of merging two json files so being constantly curious I decided I would hamper any chance of performing this simple task by choosing to review two new technologies, Python and Azure WebJobs.
+<meta property="og:title" content="Why EE's new customer service policy could not be more wrong">
+<meta property="og:description" content="EE have just announced that they will be introducing a new service which will allow you to pay 50p extra to jump to the front of the queue when you dial their customer support line.
 
 ">
-<meta property="og:url" content="/azure/python/python-packages-and-azure-webjobs/">
+<meta property="og:url" content="/agile/ee/why-ee-is-very-wrong/">
 <meta property="og:site_name" content="Things that make my head hurt">
 
 
 
 
 
-<link rel="canonical" href="/azure/python/python-packages-and-azure-webjobs/">
+<link rel="canonical" href="/agile/ee/why-ee-is-very-wrong/">
 <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Things that make my head hurt Feed">
 <link rel="author" href="http://plus.google.com/+NicJackson?rel=author">
 
@@ -132,35 +129,39 @@ I had a simple to task to solve of merging two json files so being constantly cu
   <article>
     <div class="headline-wrap">
       
-        <h1><a href="/azure/python/python-packages-and-azure-webjobs/" rel="bookmark" title="Python Packages and Azure WebJobs">Python Packages and Azure WebJobs</a></h1>
+        <h1><a href="/agile/ee/why-ee-is-very-wrong/" rel="bookmark" title="Why EE's new customer service policy could not be more wrong">Why EE's new customer service policy could not be more wrong</a></h1>
       
     </div><!--/ .headline-wrap -->
     <div class="article-wrap">
-      <h3 id="introduction">Introduction</h3>
-<p>I had a simple to task to solve of merging two json files so being constantly curious I decided I would hamper any chance of performing this simple task by choosing to review two new technologies, <em>Python</em> and <em>Azure WebJobs</em>.</p>
+      <p>EE have just announced that they will be introducing a <a href="http://www.engadget.com/2014/08/15/ee-lets-queue-jumpers-pay-50p-for-faster-customer-service/">new service which will allow you to pay 50p extra to jump to the front of the queue</a> when you dial their customer support line.</p>
 
-<p>In this post I’m not going to discuss the finer details of <em>Python</em> but I hope to pass as quick tip regarding using <em>Python</em> packages with <em>Azure WebJobs</em></p>
+<h3 id="what-is-the-justification-for-this">What is the justification for this?</h3>
+<p>Before I dive into why this is quite possibly one of the worst ideas that I have heard recently lets look at why EE are doing this.  Their justification is that the additional charge will allow them to open more customer service lines which in turn will improve customer services.</p>
 
-<h3 id="using-python-packages-with-azure-webjobs">Using Python Packages with Azure WebJobs</h3>
-<p>As a <em>Python</em> programmer you will most likely be familiar with <em>pip</em> as a noob my lack of familiarity kept me from my bed until 1am.  As it turns out all pip does (most likely a vast understatement) is to download the python package and store it in a location referenced by your <em>PYTHONPATH</em>.  Since most Python packages are only collections of organised .py files these could be located anywhere as long as your <em>PYTHONPATH</em> has reference to them.</p>
+<h3 id="that-makes-sense-i-generaly-call-customer-services-because-i-enjoy-it-so-much">That makes sense I generaly call customer services because I enjoy it so much</h3>
+<p>You don’t though do you?  We generally call customer services for the following reasons:</p>
 
-<p>This turned out to be the key in working out how to use <em>Python</em> packages with <em>Azure WebJobs</em>, you can’t use pip so the package must be uploaded as part of the WebJob package.</p>
+<ul>
+  <li>To report a problem with a service we are already paying for</li>
+  <li>To change a service because we either no longer require it or are disastisfied with it</li>
+  <li>To buy more of the product by adding additional features</li>
+</ul>
 
-<h4 id="step-1">Step 1.</h4>
-<p>If you are using OSX and the default Python 2.7 install your packages installed with pip will be in<br />
-<code>/usr/local/lib/python2.7/site-packages</code>, create a folder called <code>site-packages</code> in the root of your python job and copy any packages you need for your job into it.</p>
+<h3 id="value-vs-failure-driven-demand">Value vs Failure driven demand</h3>
+<p>It seems that EE are medicating a problem rather than treating the root cause, this is know in the agile world as <em>Failure Demand</em>.</p>
 
-<h4 id="step-2">Step 2</h4>
-<p>Next you need to modify your run.py or any other file which requires access to the package files.  At the top of the file add….  </p>
+<h4 id="failure-demand">Failure Demand</h4>
+<p>“Failure demand is the demand on the resources of an organisation caused by its own failures.  Support calls, are almost allways failure demand”</p>
 
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">sys</span>  
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;site-packages&quot;</span><span class="p">)</span></code></pre></div>
+<h4 id="value-demand">Value Demand</h4>
+<p>“The primary demand on your organisation should be value demand.  This demand can be in the form of requests for work that will add value from a customer’s perspective”</p>
 
-<h4 id="step-3">Step 3</h4>
-<p>Zip all this up and upload as a WebJob or alternatively if you have previously created a job upload the files over FTP.</p>
+<h5 id="mary-poppendieck-tom-poppendieck---leading-lean-software-development-results-are-not-the-point-2009">Mary Poppendieck; Tom Poppendieck - Leading Lean Software Development: Results Are Not The Point 2009</h5>
 
-<h4 id="step-4">Step 4</h4>
-<p>Sit back watch it all explode in a ball of fire, call me all maner of names for mixing a step, revert to Stack Overflow.</p>
+<p>If more companies examine themselves in this way and remove the need for their customers to complain and focus on <em>Value Demand</em> they will most certainly have happier customers and most likely show increased profit.  </p>
+
+<h3 id="makes-sense-does-it-not">Makes sense does it not?</h3>
+<p>In the majority of cases it seems not, big business can learn a lot from startup culture, put the people responsible for creating the problems in front of the customer so that they can understand the impact of their mistakes and so they can understand how they can best fix them.  It seems some organisations would much rather take a reactionary approach, concentrating on the efficiency of customer service lines rather than dealing with the reason that customer service exits in the first place.  If you start with the goal of eradicating customer complaints by following a quality focused development model then the remainder of your calls will be value based which instead of being a cost will help generate profit.  </p>
 
       <hr />
       <footer role="contentinfo">
@@ -188,7 +189,7 @@ I had a simple to task to solve of merging two json files so being constantly cu
 
 
         </div>
-        <p class="byline"><strong>Python Packages and Azure WebJobs</strong> was published on <time datetime="2014-08-07T13:12:32+01:00">August 07, 2014</time>.</p>
+        <p class="byline"><strong>Why EE's new customer service policy could not be more wrong</strong> was published on <time datetime="2014-08-16T11:00:00+01:00">August 16, 2014</time>.</p>
       </footer>
     </div><!-- /.article-wrap -->
   
@@ -202,9 +203,9 @@ I had a simple to task to solve of merging two json files so being constantly cu
   <h4>You might also enjoy <small class="pull-right">(<a href="/posts/">View all posts</a>)</small></h4>
     <ul>
     
-      <li><a href="/agile/ee/why-ee-is-very-wrong/" title="Why EE's new customer service policy could not be more wrong">Why EE's new customer service policy could not be more wrong</a></li>
-    
       <li><a href="/swift/ios/swift-unit-tests-and-access-modifiers/" title="Swift Unit Tests and Access Modifiers">Swift Unit Tests and Access Modifiers</a></li>
+    
+      <li><a href="/azure/python/python-packages-and-azure-webjobs/" title="Python Packages and Azure WebJobs">Python Packages and Azure WebJobs</a></li>
     
     </ul>
     <hr />

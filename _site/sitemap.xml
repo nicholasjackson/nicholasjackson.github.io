@@ -3,35 +3,41 @@
   
   
   <url>
-    <loc>http://0.0.0.0:4000/swift/ios/swift-unit-tests-and-access-modifiers/</loc>
+    <loc>/agile/ee/why-ee-is-very-wrong/</loc>
+    <lastmod>2014-08-16T11:00:00+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>/swift/ios/swift-unit-tests-and-access-modifiers/</loc>
     <lastmod>2014-08-08T17:00:00+01:00</lastmod>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>http://0.0.0.0:4000/azure/python/python-packages-and-azure-webjobs/</loc>
+    <loc>/azure/python/python-packages-and-azure-webjobs/</loc>
     <lastmod>2014-08-07T13:12:32+01:00</lastmod>
     <priority>0.8</priority>
   </url>
   
   
   <url>
-    <loc>http://0.0.0.0:4000/about/</loc>
-    <lastmod>2014-08-08T21:58:52+01:00</lastmod>
+    <loc>/about/</loc>
+    <lastmod>2014-08-16T10:04:18+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>http://0.0.0.0:4000/about/</loc>
-    <lastmod>2014-08-08T21:58:52+01:00</lastmod>
+    <loc>/about/</loc>
+    <lastmod>2014-08-16T10:04:18+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>http://0.0.0.0:4000/</loc>
-    <lastmod>2014-08-08T21:58:52+01:00</lastmod>
+    <loc>/</loc>
+    <lastmod>2014-08-16T10:04:18+01:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
