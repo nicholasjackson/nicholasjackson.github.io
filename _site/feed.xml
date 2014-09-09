@@ -3,11 +3,127 @@
   <channel>
     <title>Things that make my head hurt</title>
     <description></description>
-    <link>/</link>
-    <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 16 Aug 2014 10:04:18 +0100</pubDate>
-    <lastBuildDate>Sat, 16 Aug 2014 10:04:18 +0100</lastBuildDate>
-    <generator>Jekyll v2.2.0</generator>
+    <link>http://0.0.0.0:4000/</link>
+    <atom:link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Tue, 09 Sep 2014 01:33:07 +0100</pubDate>
+    <lastBuildDate>Tue, 09 Sep 2014 01:33:07 +0100</lastBuildDate>
+    <generator>Jekyll v2.3.0</generator>
+    
+      <item>
+        <title>Functional testing with cucumber and protractor</title>
+        <description>&lt;p&gt;Now I love Behaviour Driven Development I love it for many reasons but my main reason is the way it completes my development process.  TDD allows me to test how my code works to validate that the new function has been implemented correctly, to put me in the mindset of writing minimalist and well structured code, to give me confidence I am not breaking any existing code.  It is not so great at describing what behaviour the system is supposed to exhibit and if you work with an Agile methodology it is a pretty terrible interface between the developer and the product owner.&lt;/p&gt;
+
+&lt;h3 id=&quot;what-is-bdd&quot;&gt;What is BDD?&lt;/h3&gt;
+&lt;p&gt;BDD was developed by Dan North to create some shared tools that both developers and customers could use.  In an Agile world the product owner can sit with the developers and write the features that describe the behaviour that they would like the system to exhibit.  Working in this way it helps the developer get clarity on the problem and it also helps define a group of statements that can later be used as acceptance criteria.&lt;/p&gt;
+
+&lt;h3 id=&quot;gherkin&quot;&gt;Gherkin&lt;/h3&gt;
+&lt;p&gt;The most common implementation is to use the Gherkin language, Gherkin is a domain specific language which uses simple grammer to describe behaviour without having to detail how it is implemented.  Below is a simple example that might define some of the functinality for a login page:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-gherkin&quot; data-lang=&quot;gherkin&quot;&gt;&lt;span class=&quot;k&quot;&gt;Feature:&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt; Login Page&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;  As a user of the site&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;  I should be able to login&lt;/span&gt;
+
+&lt;span class=&quot;nf&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Scenario:&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt; Login Page Title&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;    Given &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;I go on &amp;quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;login.html&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Then &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;the title should equal &amp;quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Login&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;&amp;quot;&lt;/span&gt;
+
+&lt;span class=&quot;nf&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Scenario:&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt; Login With In-Correct Details&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;    Given &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;I go on &amp;quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;login.html&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;When &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;I enter incorrect user credentials&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Then &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;I should see the message &amp;quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Either your username or password are incorrect!&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;There is no complex code going on there, the feature file reads in simple plain English and the developer has sat with the product owner and has written this so there is no area for misinterpretation.  These on their own are pretty useful as it is a nice uniform way to define acceptance criteria.  The real beauty of Gherkin however is when you use it with an automated test suite, this allows the developer to write code using an outside in methodology (shown in the below image), repeatedly and predictably testing the implementation.&lt;/p&gt;
+
+&lt;h3 id=&quot;outside-in-development&quot;&gt;Outside in development&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;http://0.0.0.0:4000/images/post_images/outside-in-development.png&quot; alt=&quot;XCode Build Phases&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The developer starts with the failing feature and then working scenario by scenario incrementally goes about getting the steps to pass.  In order to get the steps to pass they will most likely have to write some failing unit tests and thus some code to satisfy those unit tests.  Once all scenarios in the feature are passing then the acceptance criteria for the story has been met and the story can be considered done.  The bottom line on this process is quality code, but you don’t care about quality right because you love to repeat yourself 1000s of times going over the same bug.&lt;/p&gt;
+
+&lt;h3 id=&quot;automated-test-runners&quot;&gt;Automated test runners&lt;/h3&gt;
+&lt;p&gt;There are a million and one different test runners that implement Gherkin (Cucumber, RSpec, the original JBehave) and therefore it can be used to test everything from raw code, APIs, Websites and Mobile Applications.  Personally I use this approach for all of the afore-mentioned applications and we have even written a specific test runner to test Starling framework mobile applications.  One of the more common test runners you will find used is Cucumber and other than to bore you about my love for BDD I want to show how Cucumber can be used to test your AngularJS based web applications.&lt;/p&gt;
+
+&lt;h3 id=&quot;enter-angularjs&quot;&gt;Enter AngularJS&lt;/h3&gt;
+&lt;p&gt;AngularJS is a Javascript framework for the modern web, it allows you to build dynamic views using a unified and tested framework, data bind to Restful services using an MVVM model and a whole host of other things which I am not even going to pretend I understand.  One of the great features about Angular is that it has been written from a testability perspective, live services can be easily replaced with test data and it supports dependency injection out of the box so it really helps with writing clean well structured bug free code.&lt;/p&gt;
+
+&lt;h3 id=&quot;angularjs-testing-with-protractor&quot;&gt;AngularJS testing with Protractor&lt;/h3&gt;
+&lt;p&gt;So that has our unit testing covered but how are we going to test our behaviour, I guess we will just use cucumber and selenium webdriver.  Well you could but It will cause you pain as Angular is an asynchronous framework, just because the page has loaded does not mean that angular has completed the layout.  This means you are going to have to handle the load completion yourself.  Except you are not, the kind people responsible for Angular have thought about this and created the protractor framework.  Protractor understands Angular directives and its async behaviour so you don’t have to write any extra code.  It gives you the ability to access your repeaters directly so no more messy CSS or DOM selectors.&lt;/p&gt;
+
+&lt;p&gt;If you want to check how many items you have on a page it becomes as simple as the below example:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;describe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;angularjs homepage todo list&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;should add a todo&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;browser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;http://www.angularjs.org&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;todoList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;by&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;repeater&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;todo in todos&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;todoList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toEqual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;todoList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getText&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toEqual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;write a protractor test&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;protractor-with-cucumber&quot;&gt;Protractor with Cucumber&lt;/h3&gt;
+&lt;p&gt;Previously you would write your tests using the Jasmine framework, whilst this was fine for developers its not the greatest business interface.  Worry not, out of the box Protractor now supports Cucumber, this means you can write your Gherkin files and Cucumber deals with the interface of these to your javascript specs.  This gives you the ability to easily create a framework for testing your application using regular expressions to maximise re-use whilst retaining the connection to the business.&lt;/p&gt;
+
+&lt;p&gt;Consider the below feature file:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-gherkin&quot; data-lang=&quot;gherkin&quot;&gt;&lt;span class=&quot;k&quot;&gt;Feature:&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt; Running Cucumber with Protractor&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;  As a user of Protractor&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;  I should be able to use Cucumber&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;  to run my E2E tests&lt;/span&gt;
+
+&lt;span class=&quot;nf&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Scenario:&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt; Wrapping WebDriver&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;    Given &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;I go on &amp;quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;index.html&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Then &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;the title should equal &amp;quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;My AngularJS App&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This translates directly into the javascript implementation file listed below:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;c1&quot;&gt;//http://chaijs.com/&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;chai&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;chai&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;//https://github.com/domenic/chai-as-promised/&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;chaiAsPromised&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;chai-as-promised&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;chai&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;chaiAsPromised&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;expect&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;chai&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Given&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/^I go on &amp;quot;([^&amp;quot;]*)&amp;quot;$/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arg1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Write code here that turns the phrase above into concrete actions&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;browser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;http://localhost:9001&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/^the title should equal &amp;quot;([^&amp;quot;]*)&amp;quot;$/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arg1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Write code here that turns the phrase above into concrete actions&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;browser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getTitle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;eventually&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;equal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arg1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;and&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;notify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;As you can see where I have used words like “index.html” in my feature file this has been replaced with a regular expression in my Javascript.  This means I can re-use this step file anywhere I need to write “Given I go on ‘page.html’”, pretty flexible and pretty awesome.  Ok these steps are not so useful for the business but they are not meant to be this is for you, the feature file is your contract to the business.&lt;/p&gt;
+
+&lt;h3 id=&quot;give-it-a-go-i-dare-you&quot;&gt;Give it a go I dare you&lt;/h3&gt;
+&lt;p&gt;Protractor and Cucumber are not without their faults but this is a million steps forward from where we were a year ago.  If you are a developer writing web apps with the Angular framework then you are most likely already using Protractor.  If you are not using Cucumber give it a go and see how it improves your relationship with your customer.  If you are the customer and you are not already using BDD, give it ago, I guarantee you will see positive results with your software quality and a better relationship with your developers.&lt;/p&gt;
+
+&lt;p&gt;For your convenience I have created a simple example which uses a scaffold Angular app, you can get it right here, right now :)&lt;/p&gt;
+
+&lt;h3 id=&quot;source-code&quot;&gt;Source Code:&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/nicholasjackson/protractor-cucumber-example&quot;&gt;https://github.com/nicholasjackson/protractor-cucumber-example&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Tue, 09 Sep 2014 01:00:00 +0100</pubDate>
+        <link>http://0.0.0.0:4000/agile/bdd/angular/protractor/cucumber/protractor-cucumber/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/agile/bdd/angular/protractor/cucumber/protractor-cucumber/</guid>
+        
+        
+        <category>agile</category>
+        
+        <category>bdd</category>
+        
+        <category>angular</category>
+        
+        <category>protractor</category>
+        
+        <category>cucumber</category>
+        
+      </item>
     
       <item>
         <title>Why EE&#39;s new customer service policy could not be more wrong</title>
@@ -42,8 +158,8 @@
 &lt;p&gt;In the majority of cases it seems not, big business can learn a lot from startup culture, put the people responsible for creating the problems in front of the customer so that they can understand the impact of their mistakes and so they can understand how they can best fix them.  It seems some organisations would much rather take a reactionary approach, concentrating on the efficiency of customer service lines rather than dealing with the reason that customer service exits in the first place.  If you start with the goal of eradicating customer complaints by following a quality focused development model then the remainder of your calls will be value based which instead of being a cost will help generate profit.  &lt;/p&gt;
 </description>
         <pubDate>Sat, 16 Aug 2014 11:00:00 +0100</pubDate>
-        <link>/agile/ee/why-ee-is-very-wrong/</link>
-        <guid isPermaLink="true">/agile/ee/why-ee-is-very-wrong/</guid>
+        <link>http://0.0.0.0:4000/agile/ee/why-ee-is-very-wrong/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/agile/ee/why-ee-is-very-wrong/</guid>
         
         
         <category>agile</category>
@@ -110,7 +226,7 @@
 
 &lt;p&gt;The default for XCode is that you add your tests classes to the test target and your application classes under test to the application target, the main application then referenced as a target dependency in the XCode build phases panel (see below).
 &lt;br /&gt;&lt;br /&gt;
-&lt;img src=&quot;/images/post_images/xcode-tdd-swift.png&quot; alt=&quot;XCode Build Phases&quot; /&gt;
+&lt;img src=&quot;http://0.0.0.0:4000/images/post_images/xcode-tdd-swift.png&quot; alt=&quot;XCode Build Phases&quot; /&gt;
 &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;If you run the tests in XCode with this default setup under beta 4+ the code will not even compile as you will be getting unresolved identifier errors.  This is due to the fact that the test target is different to the application target and thus can not access Internal classes and methods.&lt;/p&gt;
@@ -125,8 +241,8 @@ I’m not even going to have this argument, we have already ascertained that acc
 &lt;p&gt;OK, just tell me how to test bloody internal modifiers.  It’s actually quite simple, just add the class under test to the test target’s compile sources list.  It’s possible this requirement will change in a future XCode release but for now its a fairly painless additional step.&lt;/p&gt;
 </description>
         <pubDate>Fri, 08 Aug 2014 17:00:00 +0100</pubDate>
-        <link>/swift/ios/swift-unit-tests-and-access-modifiers/</link>
-        <guid isPermaLink="true">/swift/ios/swift-unit-tests-and-access-modifiers/</guid>
+        <link>http://0.0.0.0:4000/swift/ios/swift-unit-tests-and-access-modifiers/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/swift/ios/swift-unit-tests-and-access-modifiers/</guid>
         
         
         <category>swift</category>
@@ -164,8 +280,8 @@ I’m not even going to have this argument, we have already ascertained that acc
 &lt;p&gt;Sit back watch it all explode in a ball of fire, call me all maner of names for mixing a step, revert to Stack Overflow.&lt;/p&gt;
 </description>
         <pubDate>Thu, 07 Aug 2014 13:12:32 +0100</pubDate>
-        <link>/azure/python/python-packages-and-azure-webjobs/</link>
-        <guid isPermaLink="true">/azure/python/python-packages-and-azure-webjobs/</guid>
+        <link>http://0.0.0.0:4000/azure/python/python-packages-and-azure-webjobs/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/azure/python/python-packages-and-azure-webjobs/</guid>
         
         
         <category>azure</category>
