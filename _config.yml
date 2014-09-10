@@ -2,8 +2,8 @@
 
 title:            Things that make my head hurt
 locale:           en_US
-#url: http://nicholasjackson.github.io
-url: http://0.0.0.0:4000
+url: http://nicholasjackson.github.io
+#url: http://0.0.0.0:4000
 # Jekyll configuration
 
 permalink:   /:categories/:title/
