@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8">
 <title>Functional testing with cucumber and protractor &#8211; Things that make my head hurt</title>
-<meta name="description" content="Now I love Behaviour Driven Development I love it for many reasons but my main reason is the way it completes my development process.  TDD allows me to test how my code works to validate that the new function has been implemented correctly, to put me in the mindset of writing minimalist and well structured code, to give me confidence I am not breaking any existing code.  It is not so great at describing what behaviour the system is supposed to exhibit and if you work with an Agile methodology it is a pretty terrible interface between the developer and the product owner.
+<meta name="description" content="Now I love Behaviour Driven Development I love it for many reasons but my main reason is the way it completes my development process.  TDD allows me to test how my code works to validate that the new function has been implemented correctly, to put me in the mindset of writing minimalist and well structured code and to give me confidence I am not breaking any existing code.  It is not so great at describing behaviour that the system is supposed to exhibit and if you work with an Agile methodology it is a pretty terrible interface between the developer and the customer.
 
 ">
 <meta name="keywords" content="">
@@ -15,7 +15,7 @@
 
 <!-- Twitter Cards -->
 <meta name="twitter:title" content="Functional testing with cucumber and protractor">
-<meta name="twitter:description" content="Now I love Behaviour Driven Development I love it for many reasons but my main reason is the way it completes my development process.  TDD allows me to test how my code works to validate that the new function has been implemented correctly, to put me in the mindset of writing minimalist and well structured code, to give me confidence I am not breaking any existing code.  It is not so great at describing what behaviour the system is supposed to exhibit and if you work with an Agile methodology it is a pretty terrible interface between the developer and the product owner.
+<meta name="twitter:description" content="Now I love Behaviour Driven Development I love it for many reasons but my main reason is the way it completes my development process.  TDD allows me to test how my code works to validate that the new function has been implemented correctly, to put me in the mindset of writing minimalist and well structured code and to give me confidence I am not breaking any existing code.  It is not so great at describing behaviour that the system is supposed to exhibit and if you work with an Agile methodology it is a pretty terrible interface between the developer and the customer.
 
 ">
 
@@ -28,7 +28,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Functional testing with cucumber and protractor">
-<meta property="og:description" content="Now I love Behaviour Driven Development I love it for many reasons but my main reason is the way it completes my development process.  TDD allows me to test how my code works to validate that the new function has been implemented correctly, to put me in the mindset of writing minimalist and well structured code, to give me confidence I am not breaking any existing code.  It is not so great at describing what behaviour the system is supposed to exhibit and if you work with an Agile methodology it is a pretty terrible interface between the developer and the product owner.
+<meta property="og:description" content="Now I love Behaviour Driven Development I love it for many reasons but my main reason is the way it completes my development process.  TDD allows me to test how my code works to validate that the new function has been implemented correctly, to put me in the mindset of writing minimalist and well structured code and to give me confidence I am not breaking any existing code.  It is not so great at describing behaviour that the system is supposed to exhibit and if you work with an Agile methodology it is a pretty terrible interface between the developer and the customer.
 
 ">
 <meta property="og:url" content="http://0.0.0.0:4000/agile/bdd/angular/protractor/cucumber/protractor-cucumber/">
@@ -133,10 +133,10 @@
       
     </div><!--/ .headline-wrap -->
     <div class="article-wrap">
-      <p>Now I love Behaviour Driven Development I love it for many reasons but my main reason is the way it completes my development process.  TDD allows me to test how my code works to validate that the new function has been implemented correctly, to put me in the mindset of writing minimalist and well structured code, to give me confidence I am not breaking any existing code.  It is not so great at describing what behaviour the system is supposed to exhibit and if you work with an Agile methodology it is a pretty terrible interface between the developer and the product owner.</p>
+      <p>Now I love Behaviour Driven Development I love it for many reasons but my main reason is the way it completes my development process.  TDD allows me to test how my code works to validate that the new function has been implemented correctly, to put me in the mindset of writing minimalist and well structured code and to give me confidence I am not breaking any existing code.  It is not so great at describing behaviour that the system is supposed to exhibit and if you work with an Agile methodology it is a pretty terrible interface between the developer and the customer.</p>
 
 <h3 id="what-is-bdd">What is BDD?</h3>
-<p>BDD was developed by Dan North to create some shared tools that both developers and customers could use.  In an Agile world the product owner can sit with the developers and write the features that describe the behaviour that they would like the system to exhibit.  Working in this way it helps the developer get clarity on the problem and it also helps define a group of statements that can later be used as acceptance criteria.</p>
+<p>BDD was developed by Dan North to create some shared tools that both developers and customers could use.  In an Agile world the product owner or customer can sit with the developers and write the features that describe the behaviour they would like the system to exhibit.  Working in this way it helps the developer to get clarity on the problem and it also helps define a group of statements that can later be used as acceptance criteria.</p>
 
 <h3 id="gherkin">Gherkin</h3>
 <p>The most common implementation is to use the Gherkin language, Gherkin is a domain specific language which uses simple grammer to describe behaviour without having to detail how it is implemented.  Below is a simple example that might define some of the functinality for a login page:</p>
@@ -154,21 +154,21 @@
 <span class="nf">    </span><span class="k">When </span><span class="nf">I enter incorrect user credentials</span>
 <span class="nf">    </span><span class="k">Then </span><span class="nf">I should see the message &quot;</span><span class="s">Either your username or password are incorrect!</span><span class="nf">&quot;</span></code></pre></div>
 
-<p>There is no complex code going on there, the feature file reads in simple plain English and the developer has sat with the product owner and has written this so there is no area for misinterpretation.  These on their own are pretty useful as it is a nice uniform way to define acceptance criteria.  The real beauty of Gherkin however is when you use it with an automated test suite, this allows the developer to write code using an outside in methodology (shown in the below image), repeatedly and predictably testing the implementation.</p>
+<p>There is no complex code going on here, the feature file reads in simple plain English and the developer has sat with the customer to write this so there is no area for misinterpretation.  This on its own is pretty useful as it’s a nice uniform way to define acceptance criteria.  The real beauty of Gherkin however is when you use it with an automated test suite, this allows the developer to write code using an outside in methodology, repeatedly and predictably testing the implementation.</p>
 
 <h3 id="outside-in-development">Outside in development</h3>
 <p><img src="http://0.0.0.0:4000/images/post_images/outside-in-development.png" alt="XCode Build Phases" /></p>
 
-<p>The developer starts with the failing feature and then working scenario by scenario incrementally goes about getting the steps to pass.  In order to get the steps to pass they will most likely have to write some failing unit tests and thus some code to satisfy those unit tests.  Once all scenarios in the feature are passing then the acceptance criteria for the story has been met and the story can be considered done.  The bottom line on this process is quality code, but you don’t care about quality right because you love to repeat yourself 1000s of times going over the same bug.</p>
+<p>The developer starts with the failing feature and then working scenario by scenario incrementally goes about getting the steps to pass.  In order to get the steps to pass they will most likely have to write some failing unit tests and thus some code to satisfy those unit tests.  Once all scenarios in the feature are passing then the acceptance criteria for the story has been met and the story can be considered done.  The bottom line on this process is quality code, but you don’t care about quality right because you love repeating yourself 1000s of times going over the same bug.</p>
 
 <h3 id="automated-test-runners">Automated test runners</h3>
-<p>There are a million and one different test runners that implement Gherkin (Cucumber, RSpec, the original JBehave) and therefore it can be used to test everything from raw code, APIs, Websites and Mobile Applications.  Personally I use this approach for all of the afore-mentioned applications and we have even written a specific test runner to test Starling framework mobile applications.  One of the more common test runners you will find used is Cucumber and other than to bore you about my love for BDD I want to show how Cucumber can be used to test your AngularJS based web applications.</p>
+<p>There are a million and one different test runners that implement Gherkin (Cucumber, RSpec, the original JBehave) therefore it can be used to test everything from raw code, APIs, Websites and Mobile Applications.  Personally I use this approach for all of the afore-mentioned applications and we have even written a specific test runner to test the Starling framework mobile applications.  One of the more common test runners you will find used is Cucumber and other than to bore you about my love for BDD I want to show how Cucumber can be used to test your AngularJS based web applications.</p>
 
 <h3 id="enter-angularjs">Enter AngularJS</h3>
-<p>AngularJS is a Javascript framework for the modern web, it allows you to build dynamic views using a unified and tested framework, data bind to Restful services using an MVVM model and a whole host of other things which I am not even going to pretend I understand.  One of the great features about Angular is that it has been written from a testability perspective, live services can be easily replaced with test data and it supports dependency injection out of the box so it really helps with writing clean well structured bug free code.</p>
+<p>AngularJS is a Javascript framework for the modern web, it allows you to build dynamic views using a unified and tested framework.   You can data bind your HTML to Restful services using an MVVM model and a whole host of other things which I am not even going to pretend I understand.  One of the great features about Angular is that it has been written from a testability perspective, live services can be easily replaced with test data and it supports dependency injection out of the box so it really helps with writing clean well structured bug free code.</p>
 
 <h3 id="angularjs-testing-with-protractor">AngularJS testing with Protractor</h3>
-<p>So that has our unit testing covered but how are we going to test our behaviour, I guess we will just use cucumber and selenium webdriver.  Well you could but It will cause you pain as Angular is an asynchronous framework, just because the page has loaded does not mean that angular has completed the layout.  This means you are going to have to handle the load completion yourself.  Except you are not, the kind people responsible for Angular have thought about this and created the protractor framework.  Protractor understands Angular directives and its async behaviour so you don’t have to write any extra code.  It gives you the ability to access your repeaters directly so no more messy CSS or DOM selectors.</p>
+<p>So Angular has our unit testing covered but how are we going to test our behaviour, I guess we will just use cucumber and selenium webdriver?  Well you could but it will cause you pain as Angular is an asynchronous framework, just because the page has loaded does not mean that Angular has completed the layout.  This would normally mean you are going to have to handle the load completion yourself, writing lots of ugly unpredictable sleep statements into your tests.  The kind people responsible for Angular have thought about this and created the protractor framework.  Protractor understands Angular directives and its async behaviour so you don’t have to write any extra code.  It gives you the ability to access your repeaters and directives directly so no more messy CSS or DOM selectors.</p>
 
 <p>If you want to check how many items you have on a page it becomes as simple as the below example:</p>
 
@@ -183,7 +183,7 @@
 <span class="p">});</span></code></pre></div>
 
 <h3 id="protractor-with-cucumber">Protractor with Cucumber</h3>
-<p>Previously you would write your tests using the Jasmine framework, whilst this was fine for developers its not the greatest business interface.  Worry not, out of the box Protractor now supports Cucumber, this means you can write your Gherkin files and Cucumber deals with the interface of these to your javascript specs.  This gives you the ability to easily create a framework for testing your application using regular expressions to maximise re-use whilst retaining the connection to the business.</p>
+<p>The above example uses the Jasmine framework, whilst this is fine for developers it’s not the greatest business interface.  Worry not, out of the box Protractor now supports Cucumber, this means you can write your Gherkin files and Cucumber will deal with the interface of these to your javascript specs.  What this gives you is the ability to easily create a framework for testing your application using regular expressions which maximises re-use and retains the all important connection to the customer.</p>
 
 <p>Consider the below feature file:</p>
 
@@ -220,10 +220,10 @@
   <span class="p">});</span>
 <span class="p">}</span></code></pre></div>
 
-<p>As you can see where I have used words like “index.html” in my feature file this has been replaced with a regular expression in my Javascript.  This means I can re-use this step file anywhere I need to write “Given I go on ‘page.html’”, pretty flexible and pretty awesome.  Ok these steps are not so useful for the business but they are not meant to be this is for you, the feature file is your contract to the business.</p>
+<p>As you can see where I have used words like “index.html” in my feature file this has been replaced with a regular expression in my Javascript.  This means I can re-use this step file anywhere I need to write “Given I go on ‘page.html’”, pretty flexible and pretty awesome.  Ok these steps are not so useful for the business but they are not meant to be this is for you; the feature file is your contract to the business.</p>
 
 <h3 id="give-it-a-go-i-dare-you">Give it a go I dare you</h3>
-<p>Protractor and Cucumber are not without their faults but this is a million steps forward from where we were a year ago.  If you are a developer writing web apps with the Angular framework then you are most likely already using Protractor.  If you are not using Cucumber give it a go and see how it improves your relationship with your customer.  If you are the customer and you are not already using BDD, give it ago, I guarantee you will see positive results with your software quality and a better relationship with your developers.</p>
+<p>Protractor and Cucumber are not without their faults but this is a million steps forward from where we were a year ago.  If you are a developer writing web apps with the Angular framework then you are most likely already using Protractor.  If you are not using Cucumber give it a go and see how it improves your relationship with your customer.  If you are the customer and you are not already using BDD, I can’t recommend it enough. I guarantee you will see positive results with your software quality and a better relationship with your developers.  Like coding, testing is a skill, it’s not easy and takes a little time to learn and implement. Once you have mastered the basics you will never look back.</p>
 
 <p>For your convenience I have created a simple example which uses a scaffold Angular app, you can get it right here, right now :)</p>
 
