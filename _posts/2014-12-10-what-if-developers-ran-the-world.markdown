@@ -15,7 +15,7 @@ Actually this code related metaphor nicely segues me to the main point I want to
 ## We are developers
 We are developers, and as a community we are generally a caring socially aware bunch.  Someone asked me the other day why do we help each other, is it purely altruistic?  To be honest I struggled to answer, we just do.
 
-Maybe its because we are in an employment market which has more demand than supply and therefore does not feel threat from competition?  Maybe it’s because we want to save another human the pain and suffering we have experienced ourselves? Maybe we just want to show how clever we are?  
+Maybe it's because we are in an employment market which has more demand than supply and therefore does not feel threat from competition?  Maybe it’s because we want to save another human the pain and suffering we have experienced ourselves? Maybe we just want to show how clever we are?  
 
 ## Something different
 I think it’s something different, I think as an industry we have never advanced faster than when we started openly sharing.  The rise of open source is most probably the single most important thing in the industry today and the trend for large corporations to contribute to this is just mind blowing. We learned that by cooperating we had a better chance of survival and slowly (or very quickly in evolutionary terms) we have that embedded into our very nature.
