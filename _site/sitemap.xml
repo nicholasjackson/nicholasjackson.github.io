@@ -3,6 +3,14 @@
   
   
   <url>
+    <loc>http://0.0.0.0:4000/other/what-if-developers-ran-the-world/</loc>
+    
+    <lastmod>2014-12-10T00:00:00+00:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://0.0.0.0:4000/agile/bdd/angular/protractor/cucumber/protractor-cucumber/</loc>
     
     <lastmod>2014-09-09T01:00:00+01:00</lastmod>
@@ -37,21 +45,21 @@
   
   <url>
     <loc>http://0.0.0.0:4000/about/</loc>
-    <lastmod>2014-09-10T07:13:36+01:00</lastmod>
+    <lastmod>2014-12-10T20:30:39+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://0.0.0.0:4000/about/</loc>
-    <lastmod>2014-09-10T07:13:36+01:00</lastmod>
+    <lastmod>2014-12-10T20:30:39+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://0.0.0.0:4000/</loc>
-    <lastmod>2014-09-10T07:13:36+01:00</lastmod>
+    <lastmod>2014-12-10T20:30:39+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
