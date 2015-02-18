@@ -66,7 +66,7 @@ body {
 			white-space: nowrap;
 			border-bottom: 0 solid transparent;
 		}
-		a { 
+		a {
 			display: block;
 			padding: 10px 0;
 			decoration: none;
@@ -151,11 +151,11 @@ $button-size: 1.5rem;
 	}
 }
 // Style the toggle menu link and hide it
-.nav .navtoogle {	
+.nav .navtoogle {
 	@include font-rem(18);
 	font-weight: normal;
 	background-color: $black;
-	color: $white;	
+	color: $white;
 	border: none;
 	cursor: pointer;
 	@media #{$small} {
@@ -192,7 +192,7 @@ $button-size: 1.5rem;
 	}
 }
 // Displaying the menu when the user has clicked on the button
-.js .nav .active + ul {		
+.js .nav .active + ul {
 	max-height: 30em;
 	overflow: hidden;
 	-webkit-transition: max-height .4s;
@@ -411,7 +411,7 @@ $button-size: 1.5rem;
 			border-bottom-style: solid;
 		}
 	}
-	p > a.reversefootnote, 
+	p > a.reversefootnote,
 	li > a.reversefootnote {
 		border-bottom-width: 0;
 	}
@@ -500,7 +500,7 @@ $button-size: 1.5rem;
 	margin: 1em 0;
 	li {
 		display: inline;
-		a { 
+		a {
 			border-bottom: 0 solid transparent;
 			&:hover {
 				border-bottom: 0 solid transparent;
@@ -529,12 +529,12 @@ $button-size: 1.5rem;
 	a.jp-current {
 		font-weight: bold;
 	}
-	a.jp-disabled, 
+	a.jp-disabled,
 	a.jp-disabled:hover {
 	}
-	a.jp-current, 
-	a.jp-current:hover,  
-	a.jp-disabled, 
+	a.jp-current,
+	a.jp-current:hover,
+	a.jp-disabled,
 	a.jp-disabled:hover {
 		cursor: default;
 		background: none;
@@ -555,7 +555,7 @@ $button-size: 1.5rem;
 	h4,
 	h5,
 	h6,
-	span { 
+	span {
 		@include font-rem(14);
 	}
 	footer {
@@ -590,7 +590,7 @@ $button-size: 1.5rem;
 		@include suffix(12,3.5);
 	}
 	h4 {
-		
+
 		text-transform: uppercase;
 		margin-bottom: 0;
 	}
