@@ -44,4 +44,5 @@ Fig 3.0 - Job loss by world region
 ## 4.5 billion dead globally
 The ensuring increase in unemployment, poverty and the drop in world wide GDP will most likely lead to a global war.  When we multiply the factors of war by the effects of poverty and despair we arrive at a situation not so dissimilar to the Black Death which occurred in Europe from 1346-1353 wiping out 60% of the population.  Couple this to the effects of genetic modification and radioactive fallout, scientists believe that the dead will then rise up and walk the earth again causing a global Zombie apocalypse.
 
+# Do something good
 Next time you sit down at your computer to write that epic codez just remember that you are playing a small part in global destruction.  Why not try offsetting this karma by doing something good today, make someone smile, give your partner a hug, donate something to charity or maybe just show a little more tolerance to those worse off than you?
