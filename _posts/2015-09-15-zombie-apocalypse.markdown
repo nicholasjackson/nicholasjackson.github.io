@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Software Engineering responsible for impending Zombie apocalypse"
+title:  "Software Engineering will be responsible for impending Zombie apocalypse"
 date:   2015-09-15 10:00:00
 author: Nic Jackson
 ---
@@ -35,7 +35,7 @@ But what about retraining and re-skilling?  If we use the last great labour shif
 
 Retraining unfortunately takes a long time, using data from both the Industrial revolution 1820's and the recent industrial development of the UK moving away from manufacturing into knowledge work. We see that the process takes approximately 20 years, because there is equal threat to this knowledge work as there is to mechanised industry it is safe to conclude that we can not reduce the effects of computerisation by retraining in any other role than software engineering, and since software engineers are born and not trained we completely remove any hope.
 
-![Fig 2.0]({{ site.url }}/images/post_images/zombie/total_job_loss.png)
+![Fig 2.0]({{ site.url }}/images/post_images/zombie/total_job_loss.jpg)
 Fig 3.0 - Job loss by world region
 
 ## 4.5 billion dead globally
