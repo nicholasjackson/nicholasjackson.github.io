@@ -17,12 +17,14 @@ There is a study called "The future of Employment: How susceptible are jobs to a
 ## 35% of current jobs in the UK are a high risk of computerisation by 2035
 The result of this study is that 35% of current jobs in the UK are a high risk of computerisation by 2035.  If we take this statistic as a bench mark then look at the way labour is distributed globally the effects are nothing short of devastating.
 
+
 ![Fig 1.0]({{ site.url }}/images/post_images/zombie/uk_labour_distribution.gif)
 Fig 1.0 - UK industry
 
 In order to calculate the level of devastation we must look at the way labour is distributed across the developed and non developed world.  When we look at the break down of the UK labour force we can see that 50% of our industry falls into the categories with the nine skills that represent the 35% overall job loss. However when we look at the developing world and in this instance I am going to use India as a bench mark purely because it was one of the first links in Google you can see that 95% of all industrial output in India is at risk.  When you apply the same 70% reduction you get a number of 65% of all current jobs in india at risk of computerisation by 2035.
 
 The next thing we need to do in order to calculate a global risk is to look at the division of developed to non developed counties across the globe.  If you look at the chart in Fig 2.0 you will see that approximately only 20% of the world is classified as highly developed.  The distribution of Low to High development is almost equal therefore it is safe to assume that the figures we have calculated for india are representative for the remainder of the globe.
+
 
 ![Fig 2.0]({{ site.url }}/images/post_images/zombie/global_development.png)
 Fig 2.0 - Global development
@@ -34,6 +36,7 @@ So if 65% risk represents 80% of global jobs and 35% of risk represents 20% of g
 But what about retraining and re-skilling?  If we use the last great labour shift that happened to the United Kingdom which was the close of coal mining in the 1980's we see that when a mine was closed 50% of all workers were still unemployed 12 months later, if we assume that the 50% of those miners who found new work found in a sector requiring comparable skills and we also assume that this sector is at equal risk, we can conclude that it will not be possible for the 57% of people affected to find suitable re-employment without retraining.
 
 Retraining unfortunately takes a long time, using data from both the Industrial revolution 1820's and the recent industrial development of the UK moving away from manufacturing into knowledge work. We see that the process takes approximately 20 years, because there is equal threat to this knowledge work as there is to mechanised industry it is safe to conclude that we can not reduce the effects of computerisation by retraining in any other role than software engineering, and since software engineers are born and not trained we completely remove any hope.
+
 
 ![Fig 2.0]({{ site.url }}/images/post_images/zombie/total_job_loss.jpg)
 Fig 3.0 - Job loss by world region
