@@ -1,77 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
-  
   <url>
-    <loc>http://0.0.0.0:4000/other/why-you-need-anarchy-part1/</loc>
-    
-    <lastmod>2015-02-18T14:53:00+00:00</lastmod>
-    
-    <priority>0.8</priority>
+    <loc>/zombie-apocalypse/</loc>
+    <lastmod>2015-09-15T07:00:00-03:00</lastmod>
   </url>
-  
   <url>
-    <loc>http://0.0.0.0:4000/other/what-if-developers-ran-the-world/</loc>
-    
-    <lastmod>2014-12-10T00:00:00+00:00</lastmod>
-    
-    <priority>0.8</priority>
+    <loc>/the-search-for-self-organising-teams/</loc>
+    <lastmod>2015-08-18T07:00:00-03:00</lastmod>
   </url>
-  
   <url>
-    <loc>http://0.0.0.0:4000/agile/bdd/angular/protractor/cucumber/protractor-cucumber/</loc>
-    
-    <lastmod>2014-09-09T01:00:00+01:00</lastmod>
-    
-    <priority>0.8</priority>
+    <loc>/other/why-you-need-anarchy-part1/</loc>
+    <lastmod>2015-02-18T12:53:00-02:00</lastmod>
   </url>
-  
   <url>
-    <loc>http://0.0.0.0:4000/agile/ee/why-ee-is-very-wrong/</loc>
-    
-    <lastmod>2014-08-16T11:00:00+01:00</lastmod>
-    
-    <priority>0.8</priority>
+    <loc>/other/what-if-developers-ran-the-world/</loc>
+    <lastmod>2014-12-09T22:00:00-02:00</lastmod>
   </url>
-  
   <url>
-    <loc>http://0.0.0.0:4000/swift/ios/swift-unit-tests-and-access-modifiers/</loc>
-    
-    <lastmod>2014-08-08T17:00:00+01:00</lastmod>
-    
-    <priority>0.8</priority>
+    <loc>/agile/bdd/angular/protractor/cucumber/protractor-cucumber/</loc>
+    <lastmod>2014-09-08T21:00:00-03:00</lastmod>
   </url>
-  
   <url>
-    <loc>http://0.0.0.0:4000/azure/python/python-packages-and-azure-webjobs/</loc>
-    
-    <lastmod>2014-08-07T13:12:32+01:00</lastmod>
-    
-    <priority>0.8</priority>
+    <loc>/agile/ee/why-ee-is-very-wrong/</loc>
+    <lastmod>2014-08-16T07:00:00-03:00</lastmod>
   </url>
-  
-  
   <url>
-    <loc>http://0.0.0.0:4000/about/</loc>
-    <lastmod>2015-02-18T17:54:46+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <loc>/swift/ios/swift-unit-tests-and-access-modifiers/</loc>
+    <lastmod>2014-08-08T13:00:00-03:00</lastmod>
   </url>
-  
   <url>
-    <loc>http://0.0.0.0:4000/about/</loc>
-    <lastmod>2015-02-18T17:54:46+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <loc>/azure/python/python-packages-and-azure-webjobs/</loc>
+    <lastmod>2014-08-07T09:12:32-03:00</lastmod>
   </url>
-  
   <url>
-    <loc>http://0.0.0.0:4000/</loc>
-    <lastmod>2015-02-18T17:54:46+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <loc>/about/</loc>
   </url>
-  
-  
-  
+  <url>
+    <loc>/about/</loc>
+  </url>
+  <url>
+    <loc>/</loc>
+  </url>
+  <url>
+    <loc>/images/bio-photo.html</loc>
+    <lastmod>2015-09-15T11:52:59-03:00</lastmod>
+  </url>
 </urlset>

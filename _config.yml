@@ -2,7 +2,7 @@
 
 title:            Things that make my head hurt
 locale:           en_US
-url: http://nicholasjackson.github.io
+#url: http://nicholasjackson.github.io
 #url: http://0.0.0.0:4000
 # Jekyll configuration
 
@@ -30,7 +30,7 @@ owner:
   bio: "Geek, Ultrarunner and in my spare time software engineering manager for notonthehighstreet.com."
   email:
   disqus-shortname: thingsthatmakemyheadhurt
-  twitter:
+  twitter: sheriffjackson
   facebook:
   google:
     plus: NicJackson
