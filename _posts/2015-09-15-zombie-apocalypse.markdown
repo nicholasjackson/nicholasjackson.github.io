@@ -5,7 +5,7 @@ date:   2015-09-15 10:00:00
 author: Nic Jackson
 ---
 
-So you are a software engineer? You have most likely absorbed the feel positive about how we can use our skills to change the world, cure all disease and make everyone a little bit happier?
+So you are a software engineer? You have most likely feel positive about how we can use our skills to change the world, cure all disease and make everyone a little bit happier?
 
 I don't want to put a dampener on your day but in this post I am going to have to smash that dream.  There are some alarming statistics which have been published concluding that the technology sector will in fact be responsible for the Zombie apocalypse.  When I say conclude what I actually mean is imply, most of the opinion and statistics in this article are a product of caffeine and tabloid research.
 
