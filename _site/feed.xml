@@ -5,13 +5,77 @@
     <description></description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 15 Sep 2015 11:54:23 -0300</pubDate>
-    <lastBuildDate>Tue, 15 Sep 2015 11:54:23 -0300</lastBuildDate>
-    <generator>Jekyll v2.5.3</generator>
+    <pubDate>Wed, 02 Dec 2015 15:27:14 +0000</pubDate>
+    <lastBuildDate>Wed, 02 Dec 2015 15:27:14 +0000</lastBuildDate>
+    <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Micro Docker Images for Go Microservices</title>
+        <description>&lt;p&gt;Unless you have been living in a cave on a deserted island in the middle of the pacific which has been wrapped in a faraday cage then you are probably talking about microservices and Docker.  This is by far the best topic to get you a pay rise since you pretended to know what Agile is.  In truth however microservices are really important for the way we work, they allow us to develop with independence, keep code contained by its function and if we are using Docker or another container technology, deploy exactly the same application we have just been running on our dev machines.&lt;/p&gt;
+
+&lt;p&gt;When we first get into building Docker images the common approach appears to be to follow the way we used to build virtual machines which is to use Ubuntu, Debian or another big name distribution.  The problem with this is that it produces images that are not that micro, the base image of Ubuntu alone is 187.9MB and most of this is software and libraries which we will never use.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/post_images/micro_containers/containers_vs_vms.png&quot; alt=&quot;Container Architecture&quot; /&gt;  &lt;/p&gt;
+
+&lt;p&gt;The main difference between a Container and a VM is that a container runs in process isolation on top of the core OS therefore it does not need its own kernel and a billion other files to run.  What it really needs are executables and libraries and this is the important part of a microcontainer, only install what you are intending to use, do we really need Python for our Go microservice? This is not a difficult problem to solve and let me explain how:&lt;/p&gt;
+
+&lt;h2 id=&quot;micro-base-box&quot;&gt;Micro base box&lt;/h2&gt;
+&lt;p&gt;Firstly let’s ditch the goto Ubuntu or Debian image you are using as your base box and take a look at something a little lighter.&lt;/p&gt;
+
+&lt;p&gt;Alpine Linux (&lt;a href=&quot;http://www.alpinelinux.org/&quot;&gt;http://www.alpinelinux.org/&lt;/a&gt;) is a small linux distribution which when used as a base container results in roughly a 5 MB image size, it is based on the BusyBox (&lt;a href=&quot;http://www.busybox.net/about.html&quot;&gt;http://www.busybox.net/about.html&lt;/a&gt;) distribution of linux which was originally designed for embedded systems.  So why not just use BusyBox? There are quite a few advantages to using Alpine the first is convenience in that Alpine has a package manager &lt;code&gt;apk&lt;/code&gt; which can simplify some of your container maintenance and the second is that the kernel has been patched with PaX (&lt;a href=&quot;https://www.grsecurity.net/&quot;&gt;https://www.grsecurity.net/&lt;/a&gt;) which protects against quite a large number of 0 day vulnerabilities.&lt;/p&gt;
+
+&lt;p&gt;You can see from the table below, all this only adds 4.1 MB to the size of busybox but for this convenience I think is well worth the cost.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;REPOSITORY                             VIRTUAL SIZE
+ubuntu                                 187.90 MB  
+nicholasjackson/microservice-basebox    15.82 MB  
+alpine                                   5.24 MB  
+busybox                                  1.10 MB&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;compiling-go-applications-for-alpine-linux&quot;&gt;Compiling Go applications for Alpine Linux&lt;/h2&gt;
+&lt;p&gt;One of the advantages of working with Go for your microservices is the way that it creates compiled binaries which require no framework or runtime dependancies, this works really nicely with Alpine however we do need to remember that since it is a light weight distribution it does not have all the C libraries which would be normally expected for a standard dynamically linked Go binary.  Fortunately there is a simple work around which is to disable cgo when we compile and statically link the application.  We also need to tell the compiler to rebuild all the packages we are using to ensure they are also rebuilt and statically linked.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ CGO_ENABLED&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; go build -a -installsuffix cgo .&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Lets take a look at this in a little more detail:&lt;br /&gt;
+&lt;code&gt;CGO_ENABLED=0&lt;/code&gt; is a flag to tell the build system to ignore cgo and to statically link the binary&lt;br /&gt;
+&lt;code&gt;-a&lt;/code&gt; is the flag to force rebuilding of packages that are already up-to-date.&lt;br /&gt;
+&lt;code&gt;-installsuffix cgo&lt;/code&gt; adds a suffix to use in the name of the package installation directory, this keeps output separate from default builds variants.  &lt;/p&gt;
+
+&lt;h2 id=&quot;running-your-application&quot;&gt;Running your application&lt;/h2&gt;
+&lt;p&gt;That gives us our binary what about your config, if you are building a microservice architecture then you are most likely going to be using Consul (&lt;a href=&quot;https://www.consul.io/&quot;&gt;https://www.consul.io/&lt;/a&gt;), if not you should really check it out as it is amazing.  For the purpose of this article I am going to assume that you are and therefore you are also using Consul template (&lt;a href=&quot;https://github.com/hashicorp/consul-template&quot;&gt;https://github.com/hashicorp/consul-template&lt;/a&gt;) to populate your config file and possibly restart your application when the config changes, so we will need that too.&lt;/p&gt;
+
+&lt;p&gt;But we need to keep both of those things running on the container for this we would usually start it with a daemon runner like Supervisor (&lt;a href=&quot;http://supervisord.org/&quot;&gt;http://supervisord.org/&lt;/a&gt;).  Unfortunately this uses Python which we do not want on our light weight linux box so instead we will use Skaware S6 (&lt;a href=&quot;http://skarnet.org/software/s6/&quot;&gt;http://skarnet.org/software/s6/&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;S6 is a simple and effective application, it is started using the s6-svscan application with the parameter of a config folder &lt;code&gt;$ s6-svscan /etc/s6&lt;/code&gt;.  If you look at the example config folder in my basebox (&lt;a href=&quot;https://hub.docker.com/r/nicholasjackson/microservice-basebox/&quot;&gt;https://hub.docker.com/r/nicholasjackson/microservice-basebox/&lt;/a&gt;) repository you will see that it contains multiple folders containing a bunch of shell scripts.&lt;/p&gt;
+
+&lt;h3 id=&quot;s6-svscan&quot;&gt;.s6-svscan&lt;/h3&gt;
+&lt;p&gt;This folder contains two scripts “crash” and “finish”, crash is called when one of the applications s6 is running terminate with an error, finish is called when the s6 process shuts down.&lt;/p&gt;
+
+&lt;h3 id=&quot;app&quot;&gt;app&lt;/h3&gt;
+&lt;p&gt;This folder contains two scripts “run” and “finish”, run is the script to start your main service and will typically be the execution path for your go binary.  Finish is where you can put any activities to run when the application shuts down.&lt;/p&gt;
+
+&lt;h3 id=&quot;consul-template&quot;&gt;consul-template&lt;/h3&gt;
+&lt;p&gt;This folder also contains the same two scripts but this time it is for the consul-template application, consul-template generates the config file used by our microservice from information stored in the Consul server.  Since this continually monitors the information in Consul this application must also be running for the life cycle of our microservice so we need to use s6 to monitor it and keep it alive.&lt;/p&gt;
+
+&lt;h2 id=&quot;docker-base-image&quot;&gt;Docker Base Image&lt;/h2&gt;
+&lt;p&gt;For convenience I have created a base Docker image based on Alpine with Skaware S6 and Consul Template installed (&lt;a href=&quot;https://hub.docker.com/r/nicholasjackson/microservice-basebox/&quot;&gt;https://hub.docker.com/r/nicholasjackson/microservice-basebox/&lt;/a&gt;), all in the new base box will be a tiny 15.82 MB.  By the time you add your bloated application code (yes I am being facetious) the total image will be roughly 30 MB which is a staggering 13% of the size should you have chosen the Ubuntu base box.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In this article I have mainly discussed Go applications but you can apply the techniques to Ruby or Python.  Alpine “apk” already has packages for both of these languages and with a bit of effort you could probably get a Java JRE on there.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 01 Dec 2015 14:00:00 +0000</pubDate>
+        <link>/other/micro-docker-images-for-microservices/</link>
+        <guid isPermaLink="true">/other/micro-docker-images-for-microservices/</guid>
+        
+        
+        <category>other</category>
+        
+      </item>
     
       <item>
         <title>Software Engineering will be responsible for impending Zombie apocalypse</title>
-        <description>&lt;p&gt;So you are a software engineer? You have most likely feel positive about how we can use our skills to change the world, cure all disease and make everyone a little bit happier?&lt;/p&gt;
+        <description>&lt;p&gt;So you are a software engineer? You most likely feel positive about how we can use our skills to change the world, cure disease and make everyone a little bit happier?&lt;/p&gt;
 
 &lt;p&gt;I don’t want to put a dampener on your day but in this post I am going to have to smash that dream.  There are some alarming statistics which have been published concluding that the technology sector will in fact be responsible for the Zombie apocalypse.  When I say conclude what I actually mean is imply, most of the opinion and statistics in this article are a product of caffeine and tabloid research.&lt;/p&gt;
 
@@ -48,7 +112,7 @@ Fig 3.0 - Job loss by world region&lt;/p&gt;
 &lt;h1 id=&quot;do-something-good&quot;&gt;Do something good&lt;/h1&gt;
 &lt;p&gt;Next time you sit down at your computer to write that epic codez just remember that you are playing a small part in global destruction.  Why not try offsetting this karma by doing something good today, make someone smile, give your partner a hug, donate something to charity or maybe just show a little more tolerance to those worse off than you?&lt;/p&gt;
 </description>
-        <pubDate>Tue, 15 Sep 2015 07:00:00 -0300</pubDate>
+        <pubDate>Tue, 15 Sep 2015 11:00:00 +0100</pubDate>
         <link>/zombie-apocalypse/</link>
         <guid isPermaLink="true">/zombie-apocalypse/</guid>
         
@@ -173,7 +237,7 @@ Ed Catmull the president of Pixar takes this one step further he describes his r
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;With every action think of old Satan or a boss you may have had like him, ask yourself am I leading or am I managing?  Christ was a carpenter, he would never have drunk from a golden cup, nor should you.&lt;/p&gt;
 </description>
-        <pubDate>Tue, 18 Aug 2015 07:00:00 -0300</pubDate>
+        <pubDate>Tue, 18 Aug 2015 11:00:00 +0100</pubDate>
         <link>/the-search-for-self-organising-teams/</link>
         <guid isPermaLink="true">/the-search-for-self-organising-teams/</guid>
         
@@ -182,7 +246,7 @@ Ed Catmull the president of Pixar takes this one step further he describes his r
     
       <item>
         <title>Why you need anarchy - Part 1: Anarchy Explained</title>
-        <description>&lt;p&gt;In this two part series I want to take a little look at a not so new concept called “Programmer Anarchy”, a term coined by Fred George.  Part one is going to look at some of the overriding concepts then part two will take a deeper dive.&lt;/p&gt;
+        <description>&lt;p&gt;In this two part series I want to take a little look at a not so new concept called “Programmer Anarchy”, a term coined by Fred George.  Part one is going to look at some of the overriding concepts then part two will take a deeper dive.  &lt;/p&gt;
 
 &lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;Who wants to change the world, to create something great that makes a positive difference in someone else’s life?&lt;/p&gt;
@@ -199,14 +263,14 @@ welcome to the machine,&lt;br /&gt;
 where have you been,&lt;br /&gt;
 it’s alright we know where you have been”&lt;/em&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;That line comes from Pink Floyd’s “Welcome to the Machine”, for your own sake do not turn your stereo up to full volume and listen to this track and when I say listen I mean actually listen. I was so disturbed I nearly lost control of my bladder.&lt;/p&gt;
+&lt;p&gt;That line comes from Pink Floyd’s “Welcome to the Machine”, for your own sake do not turn your stereo up to full volume and listen to this track and when I say listen I mean actually listen. I was so disturbed I nearly lost control of my bladder.  &lt;/p&gt;
 
 &lt;p&gt;The music is haunting, combine this with the lyrics and I’m transported to what I imagined to be a post apocalyptic time in the future. A time without hope a dark, a very dark time.
 &lt;br /&gt;&lt;br /&gt;
 &lt;em&gt;“What did you dream? It’s alright we told you what to dream.”&lt;/em&gt;&lt;br /&gt;
 &lt;em&gt;“You dreamed of a big star, he played a mean guitar,”&lt;/em&gt;&lt;br /&gt;
 &lt;em&gt;“He always ate in the Steak Bar. He loved to drive in his Jaguar.”&lt;/em&gt;&lt;br /&gt;
-&lt;em&gt;“So welcome to the machine.”&lt;/em&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;em&gt;“So welcome to the machine.”&lt;/em&gt;&lt;br /&gt;&lt;br /&gt;  &lt;/p&gt;
 
 &lt;p&gt;Except it’s not a futuristic vision but a chilling tale about Floyd’s disillusionment with the music industry.  Written in 1975 it actually depicts their feelings of the then present.&lt;/p&gt;
 
@@ -229,7 +293,7 @@ they have a different way, a way where individual achievement is not paramount b
 
 &lt;h4 id=&quot;chaos&quot;&gt;Chaos&lt;/h4&gt;
 &lt;ul&gt;
-  &lt;li&gt;Complete disorder and confusion&lt;/li&gt;
+  &lt;li&gt;Complete disorder and confusion  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&quot;anarchy&quot;&gt;Anarchy&lt;/h4&gt;
@@ -245,9 +309,9 @@ they have a different way, a way where individual achievement is not paramount b
 &lt;p&gt;&lt;em&gt;“I am an antichrist”&lt;/em&gt;&lt;br /&gt;
 &lt;em&gt;“I am an anarchist”&lt;/em&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/post_images/anarchy_part1_pistols.jpg&quot; alt=&quot;Sex Pistols&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/post_images/anarchy_part1_pistols.jpg&quot; alt=&quot;Sex Pistols&quot; /&gt;&lt;br /&gt;&lt;br /&gt;  &lt;/p&gt;
 
-&lt;p&gt;Dear Lord, anarchists are antichrists? Just what are you trying to sell me.  I’m afraid popular culture has taken its toll on the word, the song &lt;em&gt;“Anarchy in the UK”&lt;/em&gt; by the Sex Pistols is one of the first which springs to mind when anarchy is mentioned.  Look at the image they portray it probably offends your senses right to the very core.  This violent (yet excellent) music is a song about destruction and wanton disregard, the concept of anarchy probably has you half scared to death.&lt;/p&gt;
+&lt;p&gt;Dear Lord, anarchists are antichrists? Just what are you trying to sell me.  I’m afraid popular culture has taken its toll on the word, the song &lt;em&gt;“Anarchy in the UK”&lt;/em&gt; by the Sex Pistols is one of the first which springs to mind when anarchy is mentioned.  Look at the image they portray it probably offends your senses right to the very core.  This violent (yet excellent) music is a song about destruction and wanton disregard, the concept of anarchy probably has you half scared to death.  &lt;/p&gt;
 
 &lt;p&gt;The truth is that there is very little substance in the lyrics and the look of the band, maybe they were manufactured to create a particular effect.  Your brain latches onto a few key words, anarchy, destroy, no future.  The song is not an anarchists manifesto, its just a song.&lt;/p&gt;
 
@@ -256,13 +320,13 @@ they have a different way, a way where individual achievement is not paramount b
 &lt;h2 id=&quot;anarchy-as-a-political-system&quot;&gt;Anarchy as a political system&lt;/h2&gt;
 
 &lt;p&gt;If you look at the definition of anarchy on Wikipedia it quotes:&lt;br /&gt;
-&lt;em&gt;“Anarchy refers to a society, entity, group of persons or single person without recognition of authority”&lt;/em&gt;&lt;/p&gt;
+&lt;em&gt;“Anarchy refers to a society, entity, group of persons or single person without recognition of authority”&lt;/em&gt;  &lt;/p&gt;
 
 &lt;p&gt;This sounds terrible, but this is based on our conditioning that no recognition of authority is in fact the essence of chaos.&lt;/p&gt;
 
-&lt;p&gt;Pierre-Jospeh Proudhon a French philosopher politician in the 19th century and the person regarded as the father of Anarchy advocated stateless societies based on voluntary associations.&lt;/p&gt;
+&lt;p&gt;Pierre-Jospeh Proudhon a French philosopher politician in the 19th century and the person regarded as the father of Anarchy advocated stateless societies based on voluntary associations.  &lt;/p&gt;
 
-&lt;p&gt;The reason why he advocated this is quite nicely described by Rudolph Rocker in his book Anarcho-Syndicalism (1938) he wrote:&lt;/p&gt;
+&lt;p&gt;The reason why he advocated this is quite nicely described by Rudolph Rocker in his book Anarcho-Syndicalism (1938) he wrote:  &lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;“For the anarchist, freedom is not an abstract philosophical concept but is the vital concrete possibility for every human being to bring to full development all the powers, capabilities, and talents, with which nature has endowed him and turn them to social account.  The less this natural development of man is influenced by ecclesiastical or political guardianship, the more harmonious will human personality become, the more will it become the measure of the intellectual future of the society in which it has grown”.&lt;/em&gt;&lt;/p&gt;
 
@@ -280,7 +344,7 @@ they have a different way, a way where individual achievement is not paramount b
 
 &lt;p&gt;Lets look at how real companies are using anarchist principles to run their every day capitalist businesses.&lt;/p&gt;
 
-&lt;p&gt;In their book Lean Software Development, Mary and Tom Poppendieck discuss the case study of an organisation which has achieved great success by following this method of engagement and connection.  A company which encourages passion and worker satisfaction.  Not a startup, in fact it is 3M, after 80 years it is still selling the same vision set out by William McKnight in the 1930s.&lt;/p&gt;
+&lt;p&gt;In their book Lean Software Development, Mary and Tom Poppendieck discuss the case study of an organisation which has achieved great success by following this method of engagement and connection.  A company which encourages passion and worker satisfaction.  Not a startup, in fact it is 3M, after 80 years it is still selling the same vision set out by William McKnight in the 1930s.  &lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;em&gt;“Hire good people and leave them alone”&lt;/em&gt;&lt;/li&gt;
@@ -308,7 +372,7 @@ they have a different way, a way where individual achievement is not paramount b
 &lt;h2 id=&quot;next-time&quot;&gt;Next time&lt;/h2&gt;
 &lt;p&gt;I am going to take a closer look at Programmer Anarchy. Until then you have nothing to fear, if we work as a team the machine is already beaten.&lt;/p&gt;
 </description>
-        <pubDate>Wed, 18 Feb 2015 12:53:00 -0200</pubDate>
+        <pubDate>Wed, 18 Feb 2015 14:53:00 +0000</pubDate>
         <link>/other/why-you-need-anarchy-part1/</link>
         <guid isPermaLink="true">/other/why-you-need-anarchy-part1/</guid>
         
@@ -328,7 +392,7 @@ they have a different way, a way where individual achievement is not paramount b
 &lt;h2 id=&quot;we-are-developers&quot;&gt;We are developers&lt;/h2&gt;
 &lt;p&gt;We are developers, and as a community we are generally a caring socially aware bunch.  Someone asked me the other day why do we help each other, is it purely altruistic?  To be honest I struggled to answer, we just do.&lt;/p&gt;
 
-&lt;p&gt;Maybe it’s because we are in an employment market which has more demand than supply and therefore does not feel threat from competition?  Maybe it’s because we want to save another human the pain and suffering we have experienced ourselves? Maybe we just want to show how clever we are?&lt;/p&gt;
+&lt;p&gt;Maybe it’s because we are in an employment market which has more demand than supply and therefore does not feel threat from competition?  Maybe it’s because we want to save another human the pain and suffering we have experienced ourselves? Maybe we just want to show how clever we are?  &lt;/p&gt;
 
 &lt;h2 id=&quot;something-different&quot;&gt;Something different&lt;/h2&gt;
 &lt;p&gt;I think it’s something different, I think as an industry we have never advanced faster than when we started openly sharing.  The rise of open source is most probably the single most important thing in the industry today and the trend for large corporations to contribute to this is just mind blowing. We learned that by cooperating we had a better chance of survival and slowly (or very quickly in evolutionary terms) we have that embedded into our very nature.&lt;/p&gt;
@@ -341,7 +405,7 @@ they have a different way, a way where individual achievement is not paramount b
 &lt;h2 id=&quot;what-if-developers-ran-the-world&quot;&gt;What if developers ran the world?&lt;/h2&gt;
 &lt;p&gt;So what if developers ran the world, I would like to think it would be a far better place, we would celebrate hard work and innovation, gladly share our experiences for the better of others not protect them for corporate gain. Everything would be traceable and we would look at quality as the primary value.  It’s a culture that is transgender, one which does not care about race, religion, border or boundaries.  In my humble opinion it’s the greatest industry alive today and one which I am very proud to be part of.&lt;/p&gt;
 </description>
-        <pubDate>Tue, 09 Dec 2014 22:00:00 -0200</pubDate>
+        <pubDate>Wed, 10 Dec 2014 00:00:00 +0000</pubDate>
         <link>/other/what-if-developers-ran-the-world/</link>
         <guid isPermaLink="true">/other/what-if-developers-ran-the-world/</guid>
         
@@ -449,7 +513,7 @@ they have a different way, a way where individual achievement is not paramount b
 &lt;h3 id=&quot;source-code&quot;&gt;Source Code:&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/nicholasjackson/protractor-cucumber-example&quot;&gt;https://github.com/nicholasjackson/protractor-cucumber-example&lt;/a&gt;&lt;/p&gt;
 </description>
-        <pubDate>Mon, 08 Sep 2014 21:00:00 -0300</pubDate>
+        <pubDate>Tue, 09 Sep 2014 01:00:00 +0100</pubDate>
         <link>/agile/bdd/angular/protractor/cucumber/protractor-cucumber/</link>
         <guid isPermaLink="true">/agile/bdd/angular/protractor/cucumber/protractor-cucumber/</guid>
         
@@ -493,12 +557,12 @@ they have a different way, a way where individual achievement is not paramount b
 
 &lt;h5 id=&quot;mary-poppendieck-tom-poppendieck---leading-lean-software-development-results-are-not-the-point-2009&quot;&gt;Mary Poppendieck; Tom Poppendieck - Leading Lean Software Development: Results Are Not The Point 2009&lt;/h5&gt;
 
-&lt;p&gt;If more companies examine themselves in this way and remove the need for their customers to complain and focus on &lt;em&gt;Value Demand&lt;/em&gt; they will most certainly have happier customers and most likely show increased profit.&lt;/p&gt;
+&lt;p&gt;If more companies examine themselves in this way and remove the need for their customers to complain and focus on &lt;em&gt;Value Demand&lt;/em&gt; they will most certainly have happier customers and most likely show increased profit.  &lt;/p&gt;
 
 &lt;h3 id=&quot;makes-sense-does-it-not&quot;&gt;Makes sense does it not?&lt;/h3&gt;
-&lt;p&gt;In the majority of cases it seems not, big business can learn a lot from startup culture, put the people responsible for creating the problems in front of the customer so that they can understand the impact of their mistakes and so they can understand how they can best fix them.  It seems some organisations would much rather take a reactionary approach, concentrating on the efficiency of customer service lines rather than dealing with the reason that customer service exits in the first place.  If you start with the goal of eradicating customer complaints by following a quality focused development model then the remainder of your calls will be value based which instead of being a cost will help generate profit.&lt;/p&gt;
+&lt;p&gt;In the majority of cases it seems not, big business can learn a lot from startup culture, put the people responsible for creating the problems in front of the customer so that they can understand the impact of their mistakes and so they can understand how they can best fix them.  It seems some organisations would much rather take a reactionary approach, concentrating on the efficiency of customer service lines rather than dealing with the reason that customer service exits in the first place.  If you start with the goal of eradicating customer complaints by following a quality focused development model then the remainder of your calls will be value based which instead of being a cost will help generate profit.  &lt;/p&gt;
 </description>
-        <pubDate>Sat, 16 Aug 2014 07:00:00 -0300</pubDate>
+        <pubDate>Sat, 16 Aug 2014 11:00:00 +0100</pubDate>
         <link>/agile/ee/why-ee-is-very-wrong/</link>
         <guid isPermaLink="true">/agile/ee/why-ee-is-very-wrong/</guid>
         
@@ -524,13 +588,13 @@ they have a different way, a way where individual achievement is not paramount b
 
 &lt;p&gt;So we are writing our code following the TDD methodology, we have a class and that class has a method, the function of which we need to write tests for.  When writing object oriented code you should try to only expose the methods that define your usable interface and this should be kept as small as possible.&lt;/p&gt;
 
-&lt;p&gt;We do this because at some point you are going to want to refactor your class and the smaller the impact it has on the rest of your code the simpler it will be to refactor.  What’s that I hear you say, it’s my code and I know what I’m doing so I’m not going to have that problem.  Take it from me you will, even you will forget the function of some classes and methods as your code grows in complexity and this is where the rot sets in.&lt;/p&gt;
+&lt;p&gt;We do this because at some point you are going to want to refactor your class and the smaller the impact it has on the rest of your code the simpler it will be to refactor.  What’s that I hear you say, it’s my code and I know what I’m doing so I’m not going to have that problem.  Take it from me you will, even you will forget the function of some classes and methods as your code grows in complexity and this is where the rot sets in.  &lt;/p&gt;
 
 &lt;p&gt;Do your self a favour and follow the below principle:&lt;/p&gt;
 
 &lt;h4 id=&quot;as-public-as-necessary-as-private-as-possible&quot;&gt;“as public as necessary as private as possible”&lt;/h4&gt;
 
-&lt;p&gt;Here some simple swift code and a simple test for it…&lt;/p&gt;
+&lt;p&gt;Here some simple swift code and a simple test for it…  &lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;MyClass&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
 
@@ -581,7 +645,7 @@ I’m not even going to have this argument, we have already ascertained that acc
 &lt;h3 id=&quot;the-solution&quot;&gt;The Solution&lt;/h3&gt;
 &lt;p&gt;OK, just tell me how to test bloody internal modifiers.  It’s actually quite simple, just add the class under test to the test target’s compile sources list.  It’s possible this requirement will change in a future XCode release but for now its a fairly painless additional step.&lt;/p&gt;
 </description>
-        <pubDate>Fri, 08 Aug 2014 13:00:00 -0300</pubDate>
+        <pubDate>Fri, 08 Aug 2014 17:00:00 +0100</pubDate>
         <link>/swift/ios/swift-unit-tests-and-access-modifiers/</link>
         <guid isPermaLink="true">/swift/ios/swift-unit-tests-and-access-modifiers/</guid>
         
@@ -609,7 +673,7 @@ I’m not even going to have this argument, we have already ascertained that acc
 &lt;code&gt;/usr/local/lib/python2.7/site-packages&lt;/code&gt;, create a folder called &lt;code&gt;site-packages&lt;/code&gt; in the root of your python job and copy any packages you need for your job into it.&lt;/p&gt;
 
 &lt;h4 id=&quot;step-2&quot;&gt;Step 2&lt;/h4&gt;
-&lt;p&gt;Next you need to modify your run.py or any other file which requires access to the package files.  At the top of the file add….&lt;/p&gt;
+&lt;p&gt;Next you need to modify your run.py or any other file which requires access to the package files.  At the top of the file add….  &lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sys&lt;/span&gt;  
 &lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;site-packages&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -620,7 +684,7 @@ I’m not even going to have this argument, we have already ascertained that acc
 &lt;h4 id=&quot;step-4&quot;&gt;Step 4&lt;/h4&gt;
 &lt;p&gt;Sit back watch it all explode in a ball of fire, call me all maner of names for mixing a step, revert to Stack Overflow.&lt;/p&gt;
 </description>
-        <pubDate>Thu, 07 Aug 2014 09:12:32 -0300</pubDate>
+        <pubDate>Thu, 07 Aug 2014 13:12:32 +0100</pubDate>
         <link>/azure/python/python-packages-and-azure-webjobs/</link>
         <guid isPermaLink="true">/azure/python/python-packages-and-azure-webjobs/</guid>
         
