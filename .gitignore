@@ -34,3 +34,6 @@ build/
 .rvmrc
 .sass-cache
 .DS_Store
+
+# Jekyll specific
+_site
