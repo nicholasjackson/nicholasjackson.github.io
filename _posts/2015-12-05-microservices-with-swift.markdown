@@ -7,6 +7,8 @@ comments: true
 ---
 In this post I would like to take a very quick look at the possibilities for using the Swift language to create microservices, initially my intention was create a working example however from some initial investigation I am not convinced that at the present time this would be particularly useful.
 
+![Swift Logo]({{ site.url }}/images/post_images/swift-microservices/swift.png)
+
 ## What is Swift
 Swift is a language which was initially developed by Apple to replace Objective C for building both iOS and Mac OSX applications ([https://swift.org/about/](https://swift.org/about/)),  on December the 3rd 2015 Apple open sourced Swift ([https://github.com/apple/swift](https://github.com/apple/swift)) and have released packages for both OSX and Ubuntu containing the compiler, debugger and various other tools.  This is an incredible advancement as besides being modern language and in general a pleasure to program it opens up the opportunity for developers to write APIs and cross platform applications with limited change to the codebase.
 
