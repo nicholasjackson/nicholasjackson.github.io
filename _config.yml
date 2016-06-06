@@ -7,20 +7,25 @@ locale:           en_US
 # Jekyll configuration
 
 permalink:   /:categories/:title/
-markdown:    kramdown
-highlighter: rouge
+
 sass:
   sass_dir: _sass
   style: compressed
 gems:
   - jekyll-sitemap
 
+encoding: utf-8
+markdown: kramdown
+highlighter: rouge
+
 kramdown:
+  input: GFM
+  syntax_highlighter: rouge
   auto_ids: true
   footnote_nr: 1
   entity_output: as_char
   toc_levels: 1..6
-  use_coderay: false
+  enable_coderay: false
 
 
 # Site owner
