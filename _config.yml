@@ -32,8 +32,8 @@ kramdown:
 owner:
   name: Nic Jackson
   avatar: bio-photo.jpg
-  bio: "Geek, Ultrarunner and in my spare time software engineering evangelist for notonthehighstreet.com."
-  email:
+  bio: "Geek, Ultrarunner and software engineering evangelist for notonthehighstreet.com, author of soon to be published Building Microservices in Go"
+  email: jackson.nic@gmail.com
   disqus-shortname: thingsthatmakemyheadhurt
   twitter: sheriffjackson
   facebook:
