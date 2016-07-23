@@ -5,7 +5,7 @@ date:   2016-07-23 13:00:00
 categories: microservices go
 comments: true
 ---
-![call that a knife](images/post_images/not_optimisation/dundee.jpg)
+![call that a knife]({{ site.url }}/images/post_images/not_optimisation/dundee.jpg)
 
 Whilst writing a chapter for my book "Building Microservices in Go" I was working on a section for JSON parsing in Go.  As I was explaining the various semantics of the *encoding/json* package I wrote a really simple example of using *json.Marshal* to convert a struct into it most simple string representation.  In this example (see listing 1) I decoded the struct into a byte array and then wrote it to the response using *fmt.FPrint*.  Not the code I would write in a handler but to explain the simple useage of the package before moving on to show how you can use the prefered method which are Encoders (see listing 2).
 
