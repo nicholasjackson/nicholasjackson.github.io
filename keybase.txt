@@ -1,0 +1,74 @@
+==================================================================
+https://keybase.io/nicjackson
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://nicholasjackson.github.io
+  * I am nicjackson (https://keybase.io/nicjackson) on keybase.
+  * I have a public key with fingerprint F573 28B1 1095 5739 3CCC  4240 2CD2 E635 F441 E5E4
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "0101f63b282fe808b912bf099069f6919c0e960da18af2f05830640243c31f1b43600a",
+            "fingerprint": "f57328b1109557393ccc42402cd2e635f441e5e4",
+            "host": "keybase.io",
+            "key_id": "2cd2e635f441e5e4",
+            "kid": "0101f63b282fe808b912bf099069f6919c0e960da18af2f05830640243c31f1b43600a",
+            "uid": "3a70e262e7688214e6ee638f99de0419",
+            "username": "nicjackson"
+        },
+        "service": {
+            "hostname": "nicholasjackson.github.io",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1469270373,
+    "expire_in": 157680000,
+    "prev": "d36979f3c0787218f0dcae49461ec06130f5fb35552a605f53989cee803446ff",
+    "seqno": 6,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.53
+Comment: https://keybase.io/crypto
+
+yMNHAnicrVJtUBRlHD8gJAi1BKUPh547Fpq8PPu+ewkh1QxqIREBIXnt7j17t0B7
+x+0dSohUEhkDigWIjGJEEeBMMkx2YYMOLwMzQW+IjRAvTSMISEko0oQX7ZJNX/rY
+8+V5nv/8Xv6///y7V/voArzCBybJOzsnrnv1dTS4dKnv74L5CG8z5yHGfCQLrlww
+2wwVpylLMiNGBKAAFSmcxxhMhAxgeBbFeBGwLKBYkWJRVgCQpYCZQxlOxERAMjig
+CIARuICjIsoTOAUAh4QjoiRboMPukGSnKiuSNI4xPIoCllSfLC4IAoGpPMGMQQon
+RYJAIQkJlWi1KRpDbY7nFBgp2dSa+jGttPcf+P+5b9eKHM7RAGIUBmmKYTCUgBRU
+bRmRZc0QECirARXokLnXoIqWJSGTE7IUm4wUhCNqPVcSoDZaLcu/GKstm1PuAyMt
+ktPq4v+OZ3fYnDbBlq3CrE6nXTFqMs48u8Y7AHnTfUUTL8lmdawqIxc6FEm1M6Iq
+UnBKmgVKUCxGA5zGwxF40C45oEnSEKSaAahH84G5qqQZp1iaFXEB0AyNoYwIzAIH
+CZagUCgACsWBSIo8TpIkxlGAFEmcZVgBqmPFCYISRUTLmCPbECOltslZVElFssic
+0+WASEFnR8YDOq8A3Spfb23ddAH+D/+zhOdK1i7n9fn5HRl9nG4RS5s3wnV77cJI
+4dL+tMqW6zvsRTFJUP9Id6q+cl/yxrdMRk96ef7Rhne9UyYa1o0eHn7oRFJXRNDb
+xsDU2Zra3nq3oXFOHAI3vog6djG4P873t86qyfhoxeqpGfqD2Gy8GMLGTkUv9Px5
+6oWU1nbq04JrRSG3gy2BY0+7o2dO/t72SpY+7Wpl4uc/tkasMTDCacNkky7lpzfc
+53K6Gpe2DCR1ewzcgOIFaPlESvXV/cNxgekjPXtujl/y5Q69+llJX8KDequpKL0n
+J7blePKHsSXUjPC9vztUuJT/QZL7mdNbLfHbpxIz8zZ7vt302IW6mbM7rk1+9PN7
+U1HiyR/Grpzf518UOyFfTnvCYwgW2MBlZiHZ9WS/vFwx1/Zo3ViYkhpafLc25Myg
+29r/ZcvNsvW3DpUN8zEHW1c/lxLfcbhzcTHOkuA36y6oMMxkVc3faQoqvbdtfHjx
+Fh6VumRxrDkF52LOe9foRudox7NvSk2D8OhZ2/TujCmP+ysTv93nl4yZ+IXp8l3F
+967Mbqsu+6Z9OoFoGhwsHfokYm9heWVdmKs80gluj+j1XjfuVvQWloderipN/tX9
+ss/8hpINm4pJLqrt+Y/P7BnHwprrY3bvnDiw9fWer8teDAnqCv6u/qm4+tHEZn1l
+bW9b9fpV78gQHMlsv3A8qvGl+S1/Ac+oydA=
+=oK8m
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/nicjackson
+
+==================================================================
