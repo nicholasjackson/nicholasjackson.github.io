@@ -1,9 +1,9 @@
 ---
 layout: post
 title:  "Why you need anarchy - Part 1: Anarchy Explained"
-date:   2015-02-18 14:53:00
-categories: other
-comments: true
+tags: [other]
+image: /images/posts/anarchy/anarchy_part1_pistols.jpg
+author: nic
 ---
 In this two part series I want to take a little look at a not so new concept called “Programmer Anarchy”, a term coined by Fred George.  Part one is going to look at some of the overriding concepts then part two will take a deeper dive.  
 
@@ -64,7 +64,7 @@ The wonders of the English language two meanings of the same word with very diff
 *“I am an antichrist”*  
 *“I am an anarchist”*<br/><br/>
 
-![Sex Pistols]({{ site.url }}/images/post_images/anarchy_part1_pistols.jpg)<br/><br/>  
+![Sex Pistols](/images/posts/anarchy/anarchy_part1_pistols.jpg)<br/><br/>  
 
 Dear Lord, anarchists are antichrists? Just what are you trying to sell me.  I’m afraid popular culture has taken its toll on the word, the song *“Anarchy in the UK”* by the Sex Pistols is one of the first which springs to mind when anarchy is mentioned.  Look at the image they portray it probably offends your senses right to the very core.  This violent (yet excellent) music is a song about destruction and wanton disregard, the concept of anarchy probably has you half scared to death.  
 

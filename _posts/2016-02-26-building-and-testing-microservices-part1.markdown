@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "0 to Microservice in 5 minutes with Go and Minke"
-date:   2016-02-26 08:00:00
-categories: microservices go
-comments: true
+author: nic
+title:  0 to Microservice in 5 minutes with Go and Minke
+tags: [microservices, go, minke]
+image: /images/posts/0_microservice/minke_logo.png
 ---
 
 # Introduction
@@ -24,7 +24,7 @@ Time for split, go-microservice-template was put out to pasture and the build an
 # Go Microservice Generator for Minke
 
 ## Installing and scaffolding a microservice
-![](/images/post_images/0_microservice/go_template.png)
+![](/images/posts/0_microservice/go_template.png)
 
 Assuming your GOPATH is set correctly to get a copy of the template on your local computer and you have Ruby 2.x you need two gems installed:
 
@@ -53,7 +53,7 @@ The options for the above command are:
 
 The application will then scaffold the service for you and place the contents at:
 
-```
+```bash
 $GOPATH/src/[your_namespace]/[service_name]
 ```
 
@@ -86,29 +86,29 @@ There is some weird code in the health handler which I must warn you about:
 
 ```go
 type HealthResponseBuilder struct {
-	statusMessage string
+  statusMessage string
 }
 
 func (b *HealthResponseBuilder) SetStatusMessage(message string) *HealthResponseBuilder {
-	b.statusMessage = message
-	return b
+  b.statusMessage = message
+  return b
 }
 
 func (b *HealthResponseBuilder) Build() HealthResponse {
-	var hr HealthResponse
-	hr.StatusMessage = b.statusMessage
-	return hr
+  var hr HealthResponse
+  hr.StatusMessage = b.statusMessage
+  return hr
 }
 
 type HealthDependenciesContainer struct {
-	// if not specified will create singleton
-	SingletonBuilder *HealthResponseBuilder `inject:""`
+  // if not specified will create singleton
+  SingletonBuilder *HealthResponseBuilder `inject:""`
 
-	// statsD interface must use a name type as injection cannot infer ducktypes
-	Stats logging.StatsD                    `inject:"statsd"`
+  // statsD interface must use a name type as injection cannot infer ducktypes
+  Stats logging.StatsD                    `inject:"statsd"`
 
-	// if not specified in the graph will automatically create private instance
-	PrivateBuilder *HealthResponseBuilder  `inject:"private"`
+  // if not specified in the graph will automatically create private instance
+  PrivateBuilder *HealthResponseBuilder  `inject:"private"`
 }
 ```
 
@@ -121,10 +121,10 @@ When it comes to routing I have used the [Gorilla Toolkit](http://www.gorillatoo
 r.Get("/v1/health", HealthHandler)
 
 r.Add("POST", "/v1/echo", requestValidationHandler(
-	ECHO_HANDLER+POST,
-	reflect.TypeOf(Echo{}),
-	RouterDependencies.StatsD,
-	http.HandlerFunc(EchoHandler),
+  ECHO_HANDLER+POST,
+  reflect.TypeOf(Echo{}),
+  RouterDependencies.StatsD,
+  http.HandlerFunc(EchoHandler),
 ))
 ```
 
@@ -135,7 +135,7 @@ The go validator package [github.com/asaskevich/govalidator](http://github.com/a
 
 ```go
 type Echo struct {
-	Echo string `json:"echo" valid:"stringlength(1|255),required"`
+  Echo string `json:"echo" valid:"stringlength(1|255),required"`
 }
 
 request = Echo{}
@@ -149,7 +149,7 @@ When we wire up this code into middleware like in the **requestValidationHandler
 ### Logging
 You need logging and I recommend lots and lots of metrics out via StatsD or something similar.  There are various options from Gauges, Counters, Timing Summary Statistics, and Sets but whatever you use having the right data will not only help you debug and diagnose a problem but you can setup alerting in systems such as Datadog to wake you up in the middle of the night when something goes wrong, and believe me it will go wrong.  The simple implementation in the template is just using Increment (Counter) but it is easy to add other measures if required.  When you run the application [Graphite](http://graphite.wikidot.com/) is also spun up which is accessible at http://192.168.99.100:8080/ where 192.168.99.100 is the ip address of your docker machine.
 
-![](/images/post_images/0_microservice/graphite.png)
+![](/images/posts/0_microservice/graphite.png)
 
 I have also stated an opinion on a way to define the tags for the various metrics in const.go in the handlers package.  Ideally you do not want to only create a common format for metric tags in your microservice but treat it like a coding standard. Stick to the same format for every service, it will make dashboard creation a thousand times easier and you will not have to spend a week refactoring all the tags across 20 microservices because they were difficult to understand.
 
@@ -176,7 +176,7 @@ Testing with go-microservice-template is broken into two groups:
 2. Functional tests (Cucumber)
 
 I follow an outside in methodology when writing code, this is my preference it works for me therefore my framework does this too.  I did say this was an opinionated framework didn't I?  
-![](/images/post_images/outside-in-development.png)
+![](/images/posts/0_microservice/outside-in-development.png)
 
 ## Unit tests
 The nice thing about Go is that you can test handlers independently from the HTTP server which allows you to tests the logic of your handler really quickly.  Combine this with the dependency injection framework to isolate dependencies or inject mocks, you have a really efficient and fast way to do test driven development.  
@@ -185,24 +185,24 @@ The below code is one of the tests, we are mocking the request and checking the 
 
 ```go
 func TestEchoHandlerCorrectlyEchosResponse(t *testing.T) {
-	echoTestSetup(t)
+  echoTestSetup(t)
 
-	var responseRecorder *httptest.ResponseRecorder
-	var request http.Request
+  var responseRecorder *httptest.ResponseRecorder
+  var request http.Request
 
-	responseRecorder = httptest.NewRecorder()
+  responseRecorder = httptest.NewRecorder()
 
-	echo := Echo{Echo: "Hello World"}
-	context.Set(&request, "request", &echo)
+  echo := Echo{Echo: "Hello World"}
+  context.Set(&request, "request", &echo)
 
-	EchoHandler(responseRecorder, &request)
+  EchoHandler(responseRecorder, &request)
 
-	body := responseRecorder.Body.Bytes()
-	response := Echo{}
-	json.Unmarshal(body, &response)
+  body := responseRecorder.Body.Bytes()
+  response := Echo{}
+  json.Unmarshal(body, &response)
 
-	assert.Equal(t, 200, responseRecorder.Code)
-	assert.Equal(t, response.Echo, "Hello World")
+  assert.Equal(t, 200, responseRecorder.Code)
+  assert.Equal(t, response.Echo, "Hello World")
 }
 ```
 
@@ -211,10 +211,10 @@ All the functional tests are in the _build/features folder and are written in Gh
 
 ```gherkin
 Scenario: Echo returns same data as posted
-	Given I send a POST request to "/v1/echo" with the following
-	  | echo | Hello World |
-	Then the response status should be "200"
-	And the JSON response should have "$..echo" with the text "Hello World"
+  Given I send a POST request to "/v1/echo" with the following
+    | echo | Hello World |
+  Then the response status should be "200"
+  And the JSON response should have "$..echo" with the text "Hello World"
 ```
 
 By using a gem such as [cucumber-rest-api](https://Rubygems.org/gems/cucumber-rest-api/versions/0.3) the above cucumber feature will execute without needing a single step file (NOTE: version 0.4 of this gem is broken).  That is not so difficult to maintain, all you cucumber haters complaining about your slow and brittle test suite already screaming NOOOO.  I'm going to make a statement, you won't like it and it will most likely fill my comments with hate but here goes anyway.
@@ -245,7 +245,7 @@ Inside the _build folder is a Gemfile with all the Ruby dependencies in it like 
 3. Build the service `rake app:build_image` this will get the go package dependencies, run the unit tests, build the application for linux then wrap everything nicely up into a Docker image.  
 4. Run the functional tests `rake app:cucumber` to spin up our mock environment using Docker Compose and execute the Cucumber tests against it.  All things well you would see the following output from the terminal, if something did not work it will most likely be because you have not got your dependencies like Docker installed or set up correctly.
 
-![](/images/post_images/0_microservice/cucumber.png)
+![](/images/posts/0_microservice/cucumber.png)
 
 ## Consul
 To feed config to our service we will use consul and [consul template](https://github.com/hashicorp/consul-template), the consul template can be found in _build/dockerfile/[servicename]/config.ctmpl. Consul template runs as a service in the container and checks for changes in [Consul](https://www.consul.io/) server.  It will write the value that corresponds to the key and restart the server when a change is detected.  The config itself is stored in a yaml file consul_keys.yml which Minke loads into consul on the start of the tests or when you run the application.  Below is a simple example of a Consul template for our service, Consul is written in Go and the templates are actually Go templates.
@@ -268,30 +268,30 @@ When you run or test your application Minke uses Docker Compose, if you examine 
 ```yaml
 version: '2'
 services:
-	helloworld_test:
-	  image: helloworld
-	  ports:
-	    - "::8001"
-	  environment:
-	    - "CONSUL=consul:8500"
-	  links:
-	    - consul:consul
-	    - statsd:statsd
-	consul:
-	  image: progrium/consul
-	  ports:
-	    - "::8500"
-	  hostname: node1
-	  command: "-server -bootstrap -ui-dir /ui"
-	statsd:
-	  image: hopsoft/graphite-statsd
-	  ports:
-	    - "::80"
-		expose:
+  helloworld_test:
+    image: helloworld
+    ports:
+      - "::8001"
+    environment:
+      - "CONSUL=consul:8500"
+    links:
+      - consul:consul
+      - statsd:statsd
+  consul:
+    image: progrium/consul
+    ports:
+      - "::8500"
+    hostname: node1
+    command: "-server -bootstrap -ui-dir /ui"
+  statsd:
+    image: hopsoft/graphite-statsd
+    ports:
+      - "::80"
+    expose:
       - "8125/udp"
-		environment:
+    environment:
       - "SERVICE_NAME=statsd"
-	registrator:
+  registrator:
     image: 'gliderlabs/registrator:latest'
     links:
       - consul:consul

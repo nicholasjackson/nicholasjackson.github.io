@@ -1,0 +1,84 @@
+<div class="sidebar">
+  <div class="row">
+
+    <div class="column small-8 large-12">
+      <h1 class="sidebar__logo logo"><a href="{{ site.baseurl }}/">{{ site.title }}</a></h1>
+      <div class="sidebar__description font-tiny">{{ site.description }}</div>
+    </div>
+
+    <label class="off-canvas-toggle"><span data-icon="ei-navicon" data-size="s"></span></label>
+
+    <div class="off-canvas-content">
+
+      <div class="column small-12 large-12">
+        <nav class="navigation">
+          <ul class="list-bare text-center">
+            {% for page in site.pages %}
+              {% unless page.permalink == '/404' %}
+                {% if page.title %}
+                  <li>
+                    <a class="page-link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+                  </li>
+                {% endif %}
+              {% endunless %}
+            {% endfor %}
+            <li><a class="subscribe-button icon-feed" href="{{ site.baseurl }}/feed.xml">RSS</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="column small-12 large-12">
+        <ul class="social-nav social-icons">
+
+          {% if site.github_username %}
+          <li>
+            <a href="http://www.github.com/{{ site.github_username }}" target="_blank">
+              <span data-icon="ei-sc-github" data-size="s"></span>
+            </a>
+          </li>
+          {% endif %}
+
+          {% if site.twitter_username %}
+          <li>
+            <a href="http://www.twitter.com/{{ site.twitter_username }}" target="_blank">
+              <span data-icon="ei-sc-twitter" data-size="s"></span>
+            </a>
+          </li>
+          {% endif %}
+
+          {% if site.email %}
+          <li>
+            <a href="mailto:{{ site.email }}" target="_blank">
+              <span data-icon="ei-envelope" data-size="s"></span>
+            </a>
+          </li>
+          {% endif %}
+
+          <li>
+            <a class="toggle-search-button" href="#">
+              <span data-icon="ei-search" data-size="s"></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar__bottom">
+        <div class="column small-12 large-12">
+          <div class="font-tiny">
+            &copy; {{ site.time | date: '%Y' }} {{ site.title }}
+          </div>
+        </div>
+
+        <div class="column small-12 large-12 poweredby">
+          <div class="font-tiny">
+            Powered by <a href="https://jekyllrb.com/">Jekyll</a>
+          </div>
+        </div>
+      </div>
+
+    </div> <!-- off-canvas-content -->
+
+  </div>
+</div>
+
+{% include search-form.html %}

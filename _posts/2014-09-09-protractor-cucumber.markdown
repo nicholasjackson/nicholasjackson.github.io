@@ -1,9 +1,9 @@
 ---
 layout: post
 title:  "Functional testing with cucumber and protractor"
-date:   2014-09-09 00:00:00
-categories: agile bdd angular protractor cucumber
-comments: true
+tags: [agile, bdd, angular, protractor, cucumber]
+author: nic
+image: /images/posts/cucumber/cucumber.png
 ---
 
 Now I love Behaviour Driven Development I love it for many reasons but my main reason is the way it completes my development process.  TDD allows me to test how my code works to validate that the new function has been implemented correctly, to put me in the mindset of writing minimalist and well structured code and to give me confidence I am not breaking any existing code.  It is not so great at describing behaviour that the system is supposed to exhibit and if you work with an Agile methodology it is a pretty terrible interface between the developer and the customer.
@@ -14,7 +14,7 @@ BDD was developed by Dan North to create some shared tools that both developers 
 ### Gherkin
 The most common implementation is to use the Gherkin language, Gherkin is a domain specific language which uses simple grammer to describe behaviour without having to detail how it is implemented.  Below is a simple example that might define some of the functinality for a login page:
 
-{% highlight gherkin %}
+```gherkin
 Feature: Login Page
   As a user of the site
   I should be able to login
@@ -27,12 +27,12 @@ Feature: Login Page
     Given I go on "login.html"
     When I enter incorrect user credentials
     Then I should see the message "Either your username or password are incorrect!"
-{% endhighlight %}
+```
 
 There is no complex code going on here, the feature file reads in simple plain English and the developer has sat with the customer to write this so there is no area for misinterpretation.  This on its own is pretty useful as it's a nice uniform way to define acceptance criteria.  The real beauty of Gherkin however is when you use it with an automated test suite, this allows the developer to write code using an outside in methodology, repeatedly and predictably testing the implementation.
 
 ### Outside in development
-![XCode Build Phases]({{ site.url }}/images/post_images/outside-in-development.png)
+![XCode Build Phases](/images/posts/cucumber/outside-in-development.png)
 
 The developer starts with the failing feature and then working scenario by scenario incrementally goes about getting the steps to pass.  In order to get the steps to pass they will most likely have to write some failing unit tests and thus some code to satisfy those unit tests.  Once all scenarios in the feature are passing then the acceptance criteria for the story has been met and the story can be considered done.  The bottom line on this process is quality code, but you don't care about quality right because you love repeating yourself 1000s of times going over the same bug.
 
@@ -40,13 +40,13 @@ The developer starts with the failing feature and then working scenario by scena
 There are a million and one different test runners that implement Gherkin (Cucumber, RSpec, the original JBehave) therefore it can be used to test everything from raw code, APIs, Websites and Mobile Applications.  Personally I use this approach for all of the afore-mentioned applications and we have even written a specific test runner to test the Starling framework mobile applications.  One of the more common test runners you will find used is Cucumber and other than to bore you about my love for BDD I want to show how Cucumber can be used to test your AngularJS based web applications.
 
 ### Enter AngularJS
-AngularJS is a Javascript framework for the modern web, it allows you to build dynamic views using a unified and tested framework.   You can data bind your HTML to Restful services using an MVVM model and a whole host of other things which I am not even going to pretend I understand.  One of the great features about Angular is that it has been written from a testability perspective, live services can be easily replaced with test data and it supports dependency injection out of the box so it really helps with writing clean well structured bug free code.
+AngularJS is a JavaScript framework for the modern web, it allows you to build dynamic views using a unified and tested framework.   You can data bind your HTML to Restful services using an MVVM model and a whole host of other things which I am not even going to pretend I understand.  One of the great features about Angular is that it has been written from a testability perspective, live services can be easily replaced with test data and it supports dependency injection out of the box so it really helps with writing clean well structured bug free code.
 
 ### AngularJS testing with Protractor
 So Angular has our unit testing covered but how are we going to test our behaviour, I guess we will just use cucumber and selenium webdriver?  Well you could but it will cause you pain as Angular is an asynchronous framework, just because the page has loaded does not mean that Angular has completed the layout.  This would normally mean you are going to have to handle the load completion yourself, writing lots of ugly unpredictable sleep statements into your tests.  The kind people responsible for Angular have thought about this and created the protractor framework.  Protractor understands Angular directives and its async behaviour so you don't have to write any extra code.  It gives you the ability to access your repeaters and directives directly so no more messy CSS or DOM selectors.
 
 If you want to check how many items you have on a page it becomes as simple as the below example:
-{% highlight javascript %}
+```javascript
 describe('angularjs homepage todo list', function() {
   it('should add a todo', function() {
     browser.get('http://www.angularjs.org');
@@ -56,13 +56,13 @@ describe('angularjs homepage todo list', function() {
     expect(todoList.get(2).getText()).toEqual('write a protractor test');
   });
 });
-{% endhighlight %}
+```
 
 ### Protractor with Cucumber
 The above example uses the Jasmine framework, whilst this is fine for developers it's not the greatest business interface.  Worry not, out of the box Protractor now supports Cucumber, this means you can write your Gherkin files and Cucumber will deal with the interface of these to your javascript specs.  What this gives you is the ability to easily create a framework for testing your application using regular expressions which maximises re-use and retains the all important connection to the customer.
 
 Consider the below feature file:
-{% highlight gherkin %}
+```gherkin
 Feature: Running Cucumber with Protractor
   As a user of Protractor
   I should be able to use Cucumber
@@ -71,9 +71,10 @@ Feature: Running Cucumber with Protractor
   Scenario: Wrapping WebDriver
     Given I go on "index.html"
     Then the title should equal "My AngularJS App"
-{% endhighlight %}
-This translates directly into the javascript implementation file listed below:
-{% highlight javascript %}
+```
+This translates directly into the JavaScript implementation file listed below:
+
+```javascript
 //http://chaijs.com/
 var chai = require('chai');
 
@@ -95,7 +96,8 @@ module.exports = function() {
     expect(browser.getTitle()).to.eventually.equal(arg1).and.notify(callback);
   });
 }
-{% endhighlight %}
+```
+
 As you can see where I have used words like "index.html" in my feature file this has been replaced with a regular expression in my Javascript.  This means I can re-use this step file anywhere I need to write "Given I go on 'page.html'", pretty flexible and pretty awesome.  Ok these steps are not so useful for the business but they are not meant to be this is for you; the feature file is your contract to the business.
 
 ### Give it a go I dare you

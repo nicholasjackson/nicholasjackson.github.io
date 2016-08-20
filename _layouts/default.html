@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+{% include head.html %}
+
+<body>
+
+  {% include analytics.html %}
+
+  <div class="off-canvas-container">
+    {% include sidebar.html %}
+
+    {{ content }}
+  </div>
+
+  <script type="text/javascript" src="{{ '/js/jquery-2.1.4.min.js' }}"></script>
+  <script type="text/javascript" src="{{ '/js/jquery.fitvids.js' }}"></script>
+  <script type="text/javascript" src="{{ '/js/jquery.ghostHunter.min.js' }}"></script>
+  <script type="text/javascript" src="{{ '/js/script.js' }}"></script>
+</body>
+
+</html>

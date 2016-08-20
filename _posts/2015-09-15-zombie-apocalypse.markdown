@@ -1,8 +1,9 @@
 ---
 layout: post
 title:  "Software Engineering will be responsible for impending Zombie apocalypse"
-date:   2015-09-15 10:00:00
-author: Nic Jackson
+author: nic
+tags: [other]
+image: /images/posts/zombie/zombie.jpg
 ---
 
 So you are a software engineer? You most likely feel positive about how we can use our skills to change the world, cure disease and make everyone a little bit happier?
@@ -18,7 +19,7 @@ There is a study called "The future of Employment: How susceptible are jobs to a
 The result of this study is that 35% of current jobs in the UK are a high risk of computerisation by 2035.  If we take this statistic as a bench mark then look at the way labour is distributed globally the effects are nothing short of devastating.
 
 
-![Fig 1.0]({{ site.url }}/images/post_images/zombie/uk_labour_distribution.gif)
+![Fig 1.0](/images/posts/zombie/uk_labour_distribution.gif)
 Fig 1.0 - UK industry
 
 In order to calculate the level of devastation we must look at the way labour is distributed across the developed and non developed world.  When we look at the break down of the UK labour force we can see that 50% of our industry falls into the categories with the nine skills that represent the 35% overall job loss. However when we look at the developing world and in this instance I am going to use India as a bench mark purely because it was one of the first links in Google you can see that 95% of all industrial output in India is at risk.  When you apply the same 70% reduction you get a number of 65% of all current jobs in india at risk of computerisation by 2035.
@@ -26,7 +27,7 @@ In order to calculate the level of devastation we must look at the way labour is
 The next thing we need to do in order to calculate a global risk is to look at the division of developed to non developed counties across the globe.  If you look at the chart in Fig 2.0 you will see that approximately only 20% of the world is classified as highly developed.  The distribution of Low to High development is almost equal therefore it is safe to assume that the figures we have calculated for india are representative for the remainder of the globe.
 
 
-![Fig 2.0]({{ site.url }}/images/post_images/zombie/global_development.png)
+![Fig 2.0](/images/posts/zombie/global_development.png)
 Fig 2.0 - Global development
 
 
@@ -38,7 +39,7 @@ But what about retraining and re-skilling?  If we use the last great labour shif
 Retraining unfortunately takes a long time, using data from both the Industrial revolution ing the 1820's and the recent industrial development of the UK moving away from manufacturing into knowledge work, we see that the process takes approximately 20 years. Because there is equal threat to this knowledge work as there is to mechanised industry it is safe to conclude that we can not reduce the effects of computerisation by retraining in any other role than software engineering, and since software engineers are born and not trained we completely remove any hope.
 
 
-![Fig 2.0]({{ site.url }}/images/post_images/zombie/total_job_loss.jpg)
+![Fig 2.0](/images/posts/zombie/total_job_loss.jpg)
 Fig 3.0 - Job loss by world region
 
 ## 4.5 billion dead globally

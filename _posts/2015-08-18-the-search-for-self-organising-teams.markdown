@@ -1,8 +1,9 @@
 ---
 layout: post
 title:  "The Last Crusade: The Search for self organising teams"
-date:   2015-08-18 10:00:00
-author: Dave Broome and Nic Jackson
+tags: [other]
+image: /images/posts/self_organising/jones.jpg
+author: nic
 ---
 
 It does not really matter what industry you work in I bet all of us have experienced working in a company where your boss spends most of their time micro managing, a company where you do not feel valued and where you are constantly frustrated that you are not getting the opportunity to grow? Coupled to this I bet you felt that there was a distinct lack of direction and strategy?  And when you look at the product that was produced, I bet it wasn't great, you certainly felt you could do better.  So what did you do? Left the company?  If you were lucky you would have joined one which did not work this way, typically you would most likely be back in the same situation.
