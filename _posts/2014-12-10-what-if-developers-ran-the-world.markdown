@@ -1,9 +1,9 @@
 ---
 layout: post
 title:  "Developer culture could it change the world for the better?"
-date:   2014-12-10 00:00:00
-categories: other
-comments: true
+tags: [other]
+author: nic
+image: /images/posts/developer_culture/change.jpg
 ---
 
 A friend sent me a link the other day about a pod of dolphins which was callously slaughtered.  It upsets me because I give a shit, what gives us the right to treat another living creature this way?  It upsets me more that there are millions if not billions of people on the planet who don’t give a shit.

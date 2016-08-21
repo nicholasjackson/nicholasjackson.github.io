@@ -1,0 +1,24 @@
+<article class="post-card-wrap column medium-6 large-4">
+
+  <div class="post-card">
+
+    <a href="{{ post.url | prepend: site.baseurl }}" class="block" title="{{ post.title }}">
+      <div class="grey-bg post-card__image CoverImage FlexEmbed FlexEmbed--16by9" style="background-image: url({{ post.image }})">
+        {% if post.featured %}
+          <span title="Featured Post">
+            <span class="post-card--featured__icon" data-icon="ei-star" data-size="s"></span>
+          </span>
+        {% endif %}
+      </div>
+    </a>
+
+    <div class="post-card__meta">
+      <span class="post-card__meta__date">{{ post.date | date: "%b %-d, %Y" }}</span>
+    </div>
+
+    <h2 class="post-card__title post-card__title--medium">
+      <a title="{{ post.title }}" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+    </h2>
+
+  </div>
+</article>

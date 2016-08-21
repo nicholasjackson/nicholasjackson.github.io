@@ -1,60 +1,46 @@
-# Site wide configuration
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
 
-title:            Things that make my head hurt
-locale:           en_US
-#url: http://nicholasjackson.github.io
-#url: http://0.0.0.0:4000
-# Jekyll configuration
+# Site settings
+title: Things that make my head hurt
+email: your-email@domain.com
+description: Nic 'Jacksons coding and code related blog
+baseurl: '' # the subpath of your site, e.g. /blog
+url: 'https://nicholasjackson.github.io' # the base hostname & protocol for your site
+twitter_username: sheriffjackson
+github_username: nicholasjackson
 
-permalink:   /:categories/:title/
-
-sass:
-  sass_dir: _sass
-  style: compressed
-gems:
-  - jekyll-sitemap
-
-encoding: utf-8
+# Build settings
 markdown: kramdown
-highlighter: rouge
+permalink: pretty
+include:
+  - _pages
+exclude:
+  - Gemfile
+  - Gemfile.lock
+gems:
+  - jekyll-paginate
+  - jekyll/tagging
 
-kramdown:
-  input: GFM
-  syntax_highlighter: rouge
-  auto_ids: true
-  footnote_nr: 1
-  entity_output: as_char
-  toc_levels: 1..6
-  enable_coderay: false
+# Pagination
+paginate: 12
 
+# Tags
+tag_page_layout: tag_page
+tag_page_dir: tag
+tag_permalink_style: pretty
 
-# Site owner
-owner:
-  name: Nic Jackson
-  avatar: bio-photo.jpg
-  bio: "Geek, Ultrarunner and software engineering evangelist for notonthehighstreet.com, author of soon to be published Building Microservices in Go"
-  email: jackson.nic@gmail.com
-  disqus-shortname: thingsthatmakemyheadhurt
-  twitter: sheriffjackson
-  facebook:
-  google:
-    plus: NicJackson
-    analytics: UA-53659420-1
-    verify:
-    ad-client:
-    ad-slot:
-  bing-verify:
-  google_plus: NicJackson
-  github: nicholasjackson
-  stackoverflow:
-  linkedin: jacksonnic
-  instagram:
-  lastfm:
-  tumblr:
-  pinterest:
-  foursquare:
-  steam:
-  dribbble:
-
-include: [".htaccess"]
-exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md"]
+authors:
+  nic:
+    name: Nic Jackson
+    display_name: Nic Jackson
+    bio: Author, Geek, Ultrarunner and in my spare time software engineering evangelist for notonthehighstreet.com.  Currently writing Building Microservices in Go to be published by Packt Feb 2017.
+    gravatar: http://s.gravatar.com/avatar/05d3d38fb637ed5240b637f57394d587?s=80
+    email: jackson.nic@gmail.com
+    web: http://nicholasjackson.github.io
+    twitter: sheriffjackson
+    github: nicholasjackson
