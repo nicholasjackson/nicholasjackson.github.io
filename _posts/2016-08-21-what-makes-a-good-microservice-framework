@@ -1,19 +1,13 @@
 ---
 layout: post
-title:  "What makes a good microservice framework?"
-date:   2016-08-21 10:00:00
-categories: [coding, thoughts]
-author_name: Nic Jackson
-author_url : author/nic
-author_avatar: avatar-nic
-show_avatar : true
-read_time : 5
-feature_image: feature-microservice-frameworks
+title:  "What makes a good microservice framework"
+tags: [microservices, thoughts]
+author: nic
+image: /images/posts/good-microservices/mindmap.jpg
 ---
-
 This is of course an entirely subjective opinion for most people however whilst I have been thinking about this and how it could be possible to score and rank the various frameworks I thought I would share a mind map I have made.
 
-![MindMap](/img/post-assets/microservice-frameworks/mindmap.jpg)
+![MindMap](/images/posts/good-microservices/mindmap.jpg)
 
 
 ## Ease of use?
