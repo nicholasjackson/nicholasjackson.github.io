@@ -1,8 +1,12 @@
 ---
-layout: page
+layout: about
 title: About
 permalink: /about
-image: '/images/pages/about.jpeg'
+image: '/images/authors/nic.png'
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+Author, Geek, Ultrarunner and in my spare time, software engineering evangelist for notonthehighstreet.com.   
+
+Currently writing "Building Microservices in Go" to be published by Packt Feb 2017.
+
+

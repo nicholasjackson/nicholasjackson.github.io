@@ -3,11 +3,11 @@ layout: post
 title:  "What makes a good microservice framework"
 tags: [microservices, thoughts]
 author: nic
-image: /images/posts/good-microservices/mindmap.jpg
+image: /images/posts/good-frameworks/mindmap.png
 ---
 This is of course an entirely subjective opinion for most people however whilst I have been thinking about this and how it could be possible to score and rank the various frameworks I thought I would share a mind map I have made.
 
-![MindMap](/images/posts/good-microservices/mindmap.jpg)
+[![MindMap](/images/posts/good-frameworks/mindmap.png)](/images/posts/good-frameworks/mindmap_large.png)
 
 
 ## Ease of use?
