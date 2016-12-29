@@ -4,7 +4,7 @@ https://keybase.io/nicjackson
 
 I hereby claim:
 
-  * I am an admin of https://nicholasjackson.github.io
+  * I am an admin of https://nicholasjackson.io
   * I am nicjackson (https://keybase.io/nicjackson) on keybase.
   * I have a public key with fingerprint F573 28B1 1095 5739 3CCC  4240 2CD2 E635 F441 E5E4
 
@@ -21,49 +21,55 @@ To do so, I am signing this object:
             "uid": "3a70e262e7688214e6ee638f99de0419",
             "username": "nicjackson"
         },
+        "revoke": {
+            "sig_ids": [
+                "790569db9ea4c1c17e26ab0635052ac34bb573e48b8f647d892eb02f986fb2830f"
+            ]
+        },
         "service": {
-            "hostname": "nicholasjackson.github.io",
+            "hostname": "nicholasjackson.io",
             "protocol": "https:"
         },
         "type": "web_service_binding",
         "version": 1
     },
-    "ctime": 1469270373,
+    "ctime": 1483022325,
     "expire_in": 157680000,
-    "prev": "d36979f3c0787218f0dcae49461ec06130f5fb35552a605f53989cee803446ff",
-    "seqno": 6,
+    "prev": "42545460a242da73b040ea2852e40eda533e99e9a3783a0909b6106549ed82e9",
+    "seqno": 10,
     "tag": "signature"
 }
 
 which yields the signature:
 
 -----BEGIN PGP MESSAGE-----
-Version: Keybase OpenPGP v2.0.53
+Version: Keybase OpenPGP v2.0.61
 Comment: https://keybase.io/crypto
 
-yMNHAnicrVJtUBRlHD8gJAi1BKUPh547Fpq8PPu+ewkh1QxqIREBIXnt7j17t0B7
-x+0dSohUEhkDigWIjGJEEeBMMkx2YYMOLwMzQW+IjRAvTSMISEko0oQX7ZJNX/rY
-8+V5nv/8Xv6///y7V/voArzCBybJOzsnrnv1dTS4dKnv74L5CG8z5yHGfCQLrlww
-2wwVpylLMiNGBKAAFSmcxxhMhAxgeBbFeBGwLKBYkWJRVgCQpYCZQxlOxERAMjig
-CIARuICjIsoTOAUAh4QjoiRboMPukGSnKiuSNI4xPIoCllSfLC4IAoGpPMGMQQon
-RYJAIQkJlWi1KRpDbY7nFBgp2dSa+jGttPcf+P+5b9eKHM7RAGIUBmmKYTCUgBRU
-bRmRZc0QECirARXokLnXoIqWJSGTE7IUm4wUhCNqPVcSoDZaLcu/GKstm1PuAyMt
-ktPq4v+OZ3fYnDbBlq3CrE6nXTFqMs48u8Y7AHnTfUUTL8lmdawqIxc6FEm1M6Iq
-UnBKmgVKUCxGA5zGwxF40C45oEnSEKSaAahH84G5qqQZp1iaFXEB0AyNoYwIzAIH
-CZagUCgACsWBSIo8TpIkxlGAFEmcZVgBqmPFCYISRUTLmCPbECOltslZVElFssic
-0+WASEFnR8YDOq8A3Spfb23ddAH+D/+zhOdK1i7n9fn5HRl9nG4RS5s3wnV77cJI
-4dL+tMqW6zvsRTFJUP9Id6q+cl/yxrdMRk96ef7Rhne9UyYa1o0eHn7oRFJXRNDb
-xsDU2Zra3nq3oXFOHAI3vog6djG4P873t86qyfhoxeqpGfqD2Gy8GMLGTkUv9Px5
-6oWU1nbq04JrRSG3gy2BY0+7o2dO/t72SpY+7Wpl4uc/tkasMTDCacNkky7lpzfc
-53K6Gpe2DCR1ewzcgOIFaPlESvXV/cNxgekjPXtujl/y5Q69+llJX8KDequpKL0n
-J7blePKHsSXUjPC9vztUuJT/QZL7mdNbLfHbpxIz8zZ7vt302IW6mbM7rk1+9PN7
-U1HiyR/Grpzf518UOyFfTnvCYwgW2MBlZiHZ9WS/vFwx1/Zo3ViYkhpafLc25Myg
-29r/ZcvNsvW3DpUN8zEHW1c/lxLfcbhzcTHOkuA36y6oMMxkVc3faQoqvbdtfHjx
-Fh6VumRxrDkF52LOe9foRudox7NvSk2D8OhZ2/TujCmP+ysTv93nl4yZ+IXp8l3F
-967Mbqsu+6Z9OoFoGhwsHfokYm9heWVdmKs80gluj+j1XjfuVvQWloderipN/tX9
-ss/8hpINm4pJLqrt+Y/P7BnHwprrY3bvnDiw9fWer8teDAnqCv6u/qm4+tHEZn1l
-bW9b9fpV78gQHMlsv3A8qvGl+S1/Ac+oydA=
-=oK8m
+yMOBAnicrZJtUBVVGMcvAZIIYpSaYBqrFs3wcvb17rlMBMiMgpAUki8gsC9nYblw
+33a5QoYwoAgkylSYQZI5DM2kaSMwUCkF0xiYg0U0ExaCoECMMTjikKNA55JNX/rY
+fjln9zz/3/N//nu+9XU3eLuF9I2xM9G3b7l93/ko37ALrb+/nxCtciFh2k+Y0eKC
+cmWk6RlmVSZMBCABqXC0SPGUgnjAi5CkRAVACDiocJCEEkCQA7JA8oJCKYDlacAx
+gGJoiSYVUmRoDgCBCCEU1ZKFHDaHatExVmGNNMWLJAkgi7eQliSJobBOkinE0azC
+MCRiEYOF2VbNpcDmREFDYaoVf8MvGYv2/qP+f/adv4ijBSNAFEchI8fzFMkgDuG2
+vAKhjABDQlehhhwWIQ/haosq5QiSWbNaiKIQwoGcVjNyJaupWdi2RphSCSMELAdl
+ESKBkUiJNGK6IAI8CmApQaIZUcS5IIYXeYVjjDIPKSQCSoE8p+ChaKAQezEb93Sq
+0iLcldO//bOtuYL22MTfmdkcVt0qWXPxebau2zSTy5teaHMJ9iEx4zEqQ1QtMv5X
+WOFEDk3FM5hIXCnpqotNMrg3RdEUG0KgApvqQBmqq4LFwQD8uPogJ0YyFMuwDAcE
+iqFkwUiLgAFIoHiWQngjCyxNIwgRFGgjTwsAAihyJOBYBiKZp5ArUQ3ZLVbMxlBd
+yMJMnJ9F0PMdiCjq6kzzMLh5G5Z4PuG6xAbvpSv+udptnn4LZt+bmYFl6rmZiOY/
+r4SNBAbrGy9UhWdl1wQ4k1OLd7XcSR/VwtObM4+1l4xH0/6fJuqBTV9+OJfXdz74
+VELCyIDb2O8NUVd/KytpP9//UrmXvcLc/zDgvVf/2BRZ2LT8QGPsmc/P8iHTCXTt
+cFDC83Pt4t2U08nd1TX1r60bCLfWhzzoyPO1+c7VR34U18QyqzNSLmwa11otQlIv
+ue7dh5ermzt2fLInOjOmtuCNZvK0z69tNy5mb9CTFhrF2LFj06r9xBbWblkzdIAt
+P1JSldiw82jPLVgRFH9w6dhNec5vcu/wWxNPi1/EnDEFV3zX+Ha8bE9X3GnQNv/z
+8eqZQwFVk6kGv9Cvrk+WtZomSkpPHb3dD923Os2vtLzZtConq7/tZFplQTQ72Fnc
+vl28/uSqayX+s0Pbugb3f+2f5BERelEfvWuo81ztNRd12efs2s/YtNdjttWt8OjV
+fvplIPSeZ3X4lLLhhN3zXprPNwfXlI+7c3G7I5/LOVT66PA1vrDjB7+I+w8mJk/O
+J26tKZNzbfv4ssqh0T3b+1cmtb4TvpmcJmanXuy2r395y2FeAD82RC3ryk3uLtp9
+PLYuzis979xs3NiRG0FLdl4pXvasYX6l+1gEHCyMWZhCO4b7PO90cO9frWyp7GkY
+6X2m66mwoUsvxG28NNv5sZa4vCe+tHZtCm/8IEDu+wtwGNf1
+=aguK
 -----END PGP MESSAGE-----
 
 And finally, I am proving ownership of this host by posting or
