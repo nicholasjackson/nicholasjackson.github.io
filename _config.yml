@@ -39,7 +39,7 @@ authors:
   nic:
     name: Nic Jackson
     display_name: Nic Jackson
-    bio: Author, Geek, Ultrarunner and in my spare time software engineering evangelist for notonthehighstreet.com.  Currently writing Building Microservices in Go to be published by Packt 2017 (https://goo.gl/vUKtPT). Maintainer of Minke (https://minke.rocks), build and test tool for microservices.
+    bio: Author, Geek, Ultrarunner and in my spare time software engineering evangelist for notonthehighstreet.com.  Currently writing Building Microservices in Go to be published by Packt 2017 https://goo.gl/vUKtPT. Maintainer of Minke https://minke.rocks, build and test tool for microservices.
     gravatar: http://s.gravatar.com/avatar/05d3d38fb637ed5240b637f57394d587?s=80
     email: jackson.nic@gmail.com
     web: https://nicholasjackson.io
