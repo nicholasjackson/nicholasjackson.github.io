@@ -368,6 +368,8 @@ This example is only a simple based on some investigation I did at the weekend i
 [https://github.com/nicholasjackson/slack-bot-lex-lambda](https://github.com/nicholasjackson/slack-bot-lex-lambda)  
 **Lex Developer Guide:**  
 [http://docs.aws.amazon.com/lex/latest/dg/what-is.html](http://docs.aws.amazon.com/lex/latest/dg/what-is.html)  
+**Lex Input and Response Format:**  
+[http://docs.aws.amazon.com/lex/latest/dg/lambda-input-response-format.html](http://docs.aws.amazon.com/lex/latest/dg/lambda-input-response-format.html)  
 **Terraform:**   
 [https://www.terraform.io](http://www.terraform.io)  
 **Jest:**  
