@@ -19,14 +19,18 @@ layout: default
 
   <div class="row">
     <div class="post-list">
-      {% for post in page.posts %}
-        {% unless post.draft %}
-          {% include post-card.html %}
-        {% endunless %}
-      {% endfor %}
+      {% if site.tags[page.tag] %}
+          {% for post in site.tags[page.tag] %}
+            {% include post-card.html %}
+          {% endfor %}
+      {% else %}
+          <p>There are no posts for this tag.</p>
+      {% endif %}
     </div>
   </div>
 
+<div>
+</div>
   <div class="row">
     {% include pagination.html %}
   </div>
