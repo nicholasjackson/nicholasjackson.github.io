@@ -19,21 +19,16 @@ markdown: kramdown
 permalink: pretty
 include:
   - _pages
+  - _tag
 exclude:
   - Gemfile
   - Gemfile.lock
 gems:
   - jekyll-paginate
-  - jekyll/tagging
   - jekyll-sitemap
 
 # Pagination
 paginate: 12
-
-# Tags
-tag_page_layout: tag_page
-tag_page_dir: tag
-tag_permalink_style: pretty
 
 authors:
   nic:

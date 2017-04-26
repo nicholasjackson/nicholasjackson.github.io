@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Building a Slackbot with AWS Lambda and Lex"
-tags: [bots, lambda, slack, node, lex]
+tags: [bots, serverless, slack, node, lex, terraform]
 author: nic
 image: /images/posts/slackbot/lambda_chatbot_diagram.jpg
 ---
