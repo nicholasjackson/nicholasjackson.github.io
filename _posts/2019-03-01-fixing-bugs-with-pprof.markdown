@@ -15,16 +15,16 @@ One of the things I did not do, mainly since it is difficult to make a full expl
 ## The Service
 The service I was working on was a simple API aggregation service; this exposes a public HTTP API consumed from a ReactJS website.  It interacts with two other upstream services, a cache which uses gRPC for the transport and a face detection service which is using Matt Ryer and David Hernandez [FaceBox](https://machinebox.io/docs/facebox).
 
-I make no apologies for the implementation details of this service; it is not the model on an excellent microservice if fact there are components which really should be delegated out into other services. What I was building was a simple system which would allow me to demonstrate how to use the Consul Connect service mesh and Envoy’s reliability and observability features.  If you would like to take a look at the source code, you can find the link on GitHub: [https://github.com/emojify-app/api](https://github.com/emojify-app/api).
+I make no apologies for the implementation details of this service; it is not the model on an excellent microservice in fact there are components which really should be delegated out into other services. What I was building was a simple system which would allow me to demonstrate how to use the Consul Connect service mesh and Envoy’s reliability and observability features.  If you would like to take a look at the source code, you can find the link on GitHub: [https://github.com/emojify-app/api](https://github.com/emojify-app/api).
 
 ## The Problem
-The service itself was functioning fine, the latency was low, and there were errors, but the CPU consumption did feel a little high for the traffic received and the work the service is doing.  Running this on my Kubernetes cluster it was easy to dismiss as not a problem but when running this in an environment with lower resources it was a problem as the CPU consumption was starving the other services.  This unusual behavior caused me to start to take a look and investigate.
+The service itself was functioning fine, the latency was low, and there were no errors, but the CPU consumption did feel a little high for the traffic received and the work the service is doing.  Running this on my Kubernetes cluster it was easy to miss this, but when running this in an environment with lower resources it was a problem as the CPU consumption was starving the other services.  This unusual behavior caused me to start to take a look and investigate.
 
 **API Service CPU Consumption**
 ![](/images/posts/fixing-bugs-with-pprof/before_cpu.png)
 
 
-The above chart is showing the CPU consumption from the service; this might be nothing normal; looking at something like CPU without context is not the best way to conclude.  What started to make me wonder however is combining CPU chart, an understanding on the actual work the service was doing at the time which was streaming files over a gRPC connection from another service and the limited number of requests.
+The above chart is showing the CPU consumption from the service; this might be nothing normal; looking at something like CPU without context is not the best way to draw a conclusion.  What started to look unusual was when I combined the CPU chart, an understanding on the actual work the service was doing at the time which was streaming files over a gRPC connection from another service, and the limited number of requests.
 
 **API Service Requests per Second**
 ![](/images/posts/fixing-bugs-with-pprof/before_rps.png)
@@ -39,7 +39,7 @@ Something looks fishy here I have a hunch that there is something not quite righ
 There is a dramatic difference there; the Cache is using 10% of the CPU of the API for the same number of requests.  This Cache service is reading from a file and sending the bytes of data as a gRPC message.  The API service receives that message and writes it as an HTTP response.  There is nothing complicated going on there; there should not be such a difference in the two services.
 
 ## Investigating the Problem
-I was now pretty confident that there was a bug somewhere in the API service which was causing it to consume way too much CPU and I needed to investigate. Luckily for me Go has an excellent tool called pprof [https://golang.org/pkg/net/http/pprof]/(https://golang.org/pkg/net/http/pprof/) which allows you to inspect the internal working of your application, you can see incredible detail like timings for memory allocation and the execution time for individual blocks of code.  Adding this to your code is also incredibly easy, so I decided, I would deploy a new build of my service with the diagnostics included so that I could run a profile.
+I was now pretty confident that there was a bug somewhere in the API service which was causing it to consume way too much CPU and I needed to investigate. Luckily for me Go has an excellent tool called pprof [https://golang.org/pkg/net/http/pprof/](https://golang.org/pkg/net/http/pprof/) which allows you to inspect the internal working of your application, you can see incredible detail like timings for memory allocation and the execution time for individual blocks of code.  Adding this to your code is also incredibly easy, so I decided, I would deploy a new build of my service with the diagnostics included so that I could run a profile.
 
 To enable profiling, I only had to add a couple of lines of code; the first was to import and enable the pprof package.
 
@@ -47,7 +47,7 @@ To enable profiling, I only had to add a couple of lines of code; the first was 
 import    _ "net/http/pprof"
 ```
 
-If you already have a web server in your application, then pprof automatically attaches itself to http.DefaultServeMux enables the API at the path `/debug/pprof/`
+If you already have a web server in your application, then pprof automatically attaches itself to `http.DefaultServeMux` enables the API at the path `/debug/pprof/`
 
 I was not using the DefaultServeMux in my application as I am using the Gorilla Mux package for my http handlers.  Because I was using Gorilla, I had to add another line of code to enable the HTTP routing to pprof
 
@@ -77,7 +77,7 @@ The output looked like this:
 
 ![](/images/posts/fixing-bugs-with-pprof/profile_before_1.png)
 
-Immediately I can see that writeString in the protobuf package is consuming a considerable amount of the CPU.  Next step is to trace this back up to the source, in my code to understand why.
+Immediately I can see that `writeString` in the protobuf package is consuming a considerable amount of the CPU.  Next step is to trace this back up to the source, in my code to understand why.
 
 Following the trace, I finally get to code I have written and saw this:
 
@@ -107,7 +107,7 @@ Over a 90% reduction in CPU, and what looks like far more normal operating condi
 I always say no experience is bad if you can learn something from it, I certainly learned that I am prone to making stupid mistakes, but it was also fun to dig into pprof again.  The whole process of finding the problem and fixing it took me approximately 30 minutes, this, of course, could have been so much longer had the issue not been so pronounced. However, it highlights just how amazing the tooling in the Go ecosystem is.
 
 If you want a takeaway, I have two:
-* Code review, a fresh pair of eyes would probably spot Println statement
+* Code review, a fresh pair of eyes would probably spot the unnecessary `Println` statement
 * Profile your services before major deployments, it does not take long, and a quick eyeball of the results can save embarrassing mistakes
 
 If you would like to see more detail on the before and after traces, you can download a PDF from the following links:
