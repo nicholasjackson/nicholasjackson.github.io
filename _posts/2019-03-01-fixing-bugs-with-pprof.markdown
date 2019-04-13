@@ -112,8 +112,8 @@ If you want a takeaway, I have two:
 
 If you would like to see more detail on the before and after traces, you can download a PDF from the following links:
 
-* Before: [/images/posts/fixing-bugs-with-pprof/profile001.pdf](/images/posts/fixing-bugs-with-pprof/profile001.pdf)
-* After: [/images/posts/fixing-bugs-with-pprof/profile001.pdf](/images/posts/fixing-bugs-with-pprof/profile001.pdf)
+* Before: [profile001.pdf](/images/posts/fixing-bugs-with-pprof/profile001.pdf)
+* After: [profile002.pdf](/images/posts/fixing-bugs-with-pprof/profile002.pdf)
 
 One final thing, remember to remove the instrumentation from your service, especially if this is running in production.  I may or may not have just done this.
 
